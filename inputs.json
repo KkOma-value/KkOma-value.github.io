@@ -1,0 +1,821 @@
+{
+  "$schema": "./schema.ts",
+  "_doc": "Worked example — Open Design as the brand. Run `pnpm dlx tsx scripts/compose.ts inputs.example.json out/example.html` to regenerate the canonical example.html from this file. Every field maps to a typed entry in schema.ts.",
+  "brand": {
+    "name": "Joseph",
+    "mark": "✺",
+    "meta": {
+      "title": "Joseph",
+      "subtitle": "Agentic Engineer"
+    },
+    "filed_under": "Agentic Engineering",
+    "tagline": "Agentic Engineer",
+    "description": "Joseph is an Agentic Engineer building autonomous systems with elegant, Rococo-inspired precision.",
+    "locale": "en",
+    "edition": "Vol. 01 / Issue Nº 26",
+    "version": "v0.3.0",
+    "license": "Apache-2.0",
+    "primary_url": "https://github.com/joseph",
+    "primary_url_label": "GitHub",
+    "download_url": "https://github.com/nexu-io/open-design/releases",
+    "download_url_label": "Download",
+    "contact_email": "https://github.com/nexu-io/open-design/issues",
+    "location": "Paris / Silicon Valley / Web",
+    "coordinates": "52.5200° N · 13.4050° E",
+    "year": "2026",
+    "year_roman": "MMXXVI",
+    "founded": "Est. MMXXVI",
+    "rails": {
+      "right": "Open Design — Vol. 01 · Issue Nº 26 · Apache-2.0",
+      "left": "Skills · Systems · Agents · BYOK · Local-first"
+    },
+    "languages": [
+      "EN",
+      "DE",
+      "中文",
+      "日本語"
+    ],
+    "status": "Live · v0.3.0"
+  },
+  "nav": [
+    {
+      "label": "Skills",
+      "href": "https://github.com/nexu-io/open-design/tree/main/skills",
+      "count": "31"
+    },
+    {
+      "label": "Systems",
+      "href": "https://github.com/nexu-io/open-design/tree/main/design-systems",
+      "count": "72"
+    },
+    {
+      "label": "Agents",
+      "href": "#agents",
+      "count": "12"
+    },
+    {
+      "label": "Labs",
+      "href": "#labs",
+      "count": "05"
+    },
+    {
+      "label": "Contact",
+      "href": "#contact"
+    }
+  ],
+  "rules": {
+    "about": {
+      "roman": "II.",
+      "meta": [
+        "About / Manifesto",
+        "•",
+        "Open Design / Volume 01"
+      ],
+      "pagination": "002 / 008"
+    },
+    "capabilities": {
+      "roman": "III.",
+      "meta": [
+        "Capabilities · Skills · Systems",
+        "•",
+        "4 surfaces / 1 loop"
+      ],
+      "pagination": "003 / 008"
+    },
+    "labs": {
+      "roman": "IV.",
+      "meta": [
+        "Labs / Skills Catalog",
+        "•",
+        "05 of 31 ongoing"
+      ],
+      "pagination": "004 / 008"
+    },
+    "method": {
+      "roman": "V.",
+      "meta": [
+        "Method / Loop",
+        "•",
+        "04 stages, iterative"
+      ],
+      "pagination": "005 / 008"
+    },
+    "work": {
+      "roman": "VI.",
+      "meta": [
+        "Selected Work · 2026 Catalog",
+        "•",
+        "Edited by Open Design"
+      ],
+      "pagination": "006 / 008"
+    },
+    "testimonial": {
+      "roman": "VII.",
+      "meta": [
+        "Collaborators / Lineage",
+        "•",
+        "Standing on shoulders"
+      ],
+      "pagination": "007 / 008"
+    },
+    "cta": {
+      "roman": "VIII.",
+      "meta": [
+        "Contact / Conversation",
+        "•",
+        "Three commands to ship"
+      ],
+      "pagination": "008 / 008"
+    }
+  },
+  "hero": {
+    "label": "Agentic Engineering & Architecture",
+    "ix": "· Nº 01",
+    "headline": [
+      {
+        "text": "Architecting "
+      },
+      {
+        "text": "autonomous",
+        "em": true
+      },
+      {
+        "text": " systems with "
+      },
+      {
+        "text": "classical",
+        "em": true
+      },
+      {
+        "text": " precision"
+      },
+      {
+        "text": ".",
+        "dot": true
+      }
+    ],
+    "lead": "Bridging the gap between cutting-edge LLM agents and the timeless elegance of Rococo aesthetics. Building systems that act independently, reason deeply, and interact gracefully.",
+    "primary": {
+      "label": "View Projects",
+      "href": "#work"
+    },
+    "secondary": {
+      "label": "Read Manifesto",
+      "href": "#about"
+    },
+    "stats": [
+      {
+        "value": "01",
+        "label": "Agent",
+        "sub": "Architect"
+      },
+      {
+        "value": "Rococo",
+        "label": "Design",
+        "sub": "Philosophy"
+      },
+      {
+        "value": "∞",
+        "label": "Autonomous",
+        "sub": "Loops"
+      }
+    ],
+    "meta": "↳ &nbsp; pnpm tools-dev &nbsp; · &nbsp; 3 commands to start",
+    "index": [
+      {
+        "num": "01",
+        "label": "Reason",
+        "active": true
+      },
+      {
+        "num": "02",
+        "label": "Act"
+      },
+      {
+        "num": "03",
+        "label": "Refine"
+      },
+      {
+        "num": "04",
+        "label": "Automate"
+      }
+    ],
+    "annotations": {
+      "tl": "FIG. 01 / OD-26",
+      "tr": "Plate Nº 08",
+      "bl": "SHA · a1b2c3d",
+      "br": "Composed in&nbsp;<span style='color:var(--coral);'>Open Design</span>"
+    }
+  },
+  "about": {
+    "label": "About the studio",
+    "ix": "· Nº 02",
+    "headline": [
+      {
+        "text": "A delicate balance of "
+      },
+      {
+        "text": "machine logic",
+        "em": true
+      },
+      {
+        "text": " and "
+      },
+      {
+        "text": "humanistic",
+        "em": true
+      },
+      {
+        "text": " art"
+      },
+      {
+        "text": ".",
+        "dot": true
+      }
+    ],
+    "lead": "As an Agentic Engineer, I design cognitive loops that empower AI to plan, execute, and self-correct. I believe the complex internal mechanisms of AI should be wrapped in an interface as intricate and beautiful as an 18th-century automaton.",
+    "cta_label": "Read our approach",
+    "cta_href": "https://github.com/nexu-io/open-design/tree/main/apps/daemon",
+    "footer_text": "Logic · Elegance · Autonomy · Scale",
+    "stamp_top": "Agentic Practice",
+    "stamp_bottom": "Est. MMXXVI",
+    "side_note": "From model behavior<br/>to visual taste, we<br/>prototype the full<br/>stack of creative<br/>systems.",
+    "caption": {
+      "bold": "Studies in form · perception · machine imagination.",
+      "rest": "(Open Design, MMXXVI)"
+    }
+  },
+  "capabilities": {
+    "label": "Capabilities",
+    "ix": "· Nº 03",
+    "headline": [
+      {
+        "text": "Engineering "
+      },
+      {
+        "text": "capabilities",
+        "em": true
+      },
+      {
+        "text": " for the autonomous era"
+      },
+      {
+        "text": ".",
+        "dot": true
+      }
+    ],
+    "lead": "From orchestrating multi-agent systems to embedding robust reasoning loops, my work focuses on building digital intelligence that operates gracefully.",
+    "ribbon": "<b>OPEN DESIGN</b> &nbsp;·&nbsp; CAPABILITIES MATRIX &nbsp;·&nbsp; OD/26",
+    "cards": [
+      {
+        "num": "01",
+        "tag": "Agentic Logic",
+        "icon_svg": "<circle cx=\"12\" cy=\"12\" r=\"10\" stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\"/>",
+        "title": "Cognitive\nArchitectures",
+        "body": "Designing self-reflecting loops and tool-use paradigms that allow LLMs to operate as autonomous problem solvers.",
+        "href": "#"
+      },
+      {
+        "num": "02",
+        "tag": "Orchestration",
+        "icon_svg": "<path d=\"M4 4h16v16H4z\" stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\"/>",
+        "title": "Multi-Agent\nSystems",
+        "body": "Coordinating fleets of specialized agents. Like a well-conducted symphony, each agent plays its part to accomplish complex tasks.",
+        "href": "#"
+      },
+      {
+        "num": "03",
+        "tag": "Aesthetics",
+        "icon_svg": "<path d=\"M12 2L2 22h20L12 2z\" stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\"/>",
+        "title": "Rococo\nInterfaces",
+        "body": "Bringing the ornate, asymmetric, and elegant details of Rococo art to modern AI terminal and web interfaces.",
+        "href": "#"
+      },
+      {
+        "num": "04",
+        "tag": "Infrastructure",
+        "icon_svg": "<path d=\"M12 22c5.523 0 10-4.477 10-10S17.523 2 12 2 2 6.477 2 12s4.477 10 10 10z\" stroke=\"currentColor\" stroke-width=\"2\" fill=\"none\" stroke-dasharray=\"4 4\"/>",
+        "title": "Autonomous\nPipelines",
+        "body": "Building robust CI/CD and deployment pipelines that agents themselves can trigger and monitor.",
+        "href": "#"
+      }
+    ]
+  },
+  "labs": {
+    "label": "Labs",
+    "ix": "· Nº 04",
+    "headline": [
+      {
+        "text": "Thoughts, "
+      },
+      {
+        "text": "experiments",
+        "em": true
+      },
+      {
+        "text": ", and clockwork"
+      },
+      {
+        "text": ".",
+        "dot": true
+      }
+    ],
+    "pills": [
+      {
+        "label": "All",
+        "count": "31",
+        "active": true
+      },
+      {
+        "label": "Prototype",
+        "count": "27"
+      },
+      {
+        "label": "Deck",
+        "count": "04"
+      },
+      {
+        "label": "Mobile",
+        "count": "03"
+      },
+      {
+        "label": "Office",
+        "count": "08"
+      }
+    ],
+    "meta": {
+      "ring": "05",
+      "bold": "Ongoing experiments",
+      "sub": "documenting ideas in flux<br/>building intelligence<br/>through making"
+    },
+    "cards": [
+      {
+        "badge": "Deck",
+        "num": "Nº 01",
+        "year": "2026",
+        "title": "Magazine Decks",
+        "body": "Editorial-grade slide decks with <code class='code-inline sm'>guizang-ppt</code>. Magazine layout, WebGL hero.",
+        "href": "https://github.com/nexu-io/open-design/tree/main/skills/guizang-ppt"
+      },
+      {
+        "badge": "Media",
+        "num": "Nº 02",
+        "year": "2026",
+        "title": "Synthetic Matter",
+        "body": "Gpt-image-2 + Seedance + HyperFrames. Image, video, audio — same chat surface as code.",
+        "href": "https://github.com/nexu-io/open-design/tree/main/skills/hyperframes"
+      },
+      {
+        "badge": "Loop",
+        "num": "Nº 03",
+        "year": "2026",
+        "title": "Prompt Choreography",
+        "body": "The interactive question form pops before a single pixel is improvised. 30s of radios beats 30min of redirects.",
+        "href": "https://github.com/nexu-io/open-design/tree/main/skills/design-brief"
+      },
+      {
+        "badge": "Critique",
+        "num": "Nº 04",
+        "year": "2026",
+        "title": "Visual Reasoning",
+        "body": "5-dim self-critique gates every artifact: philosophy · hierarchy · execution · specificity · restraint.",
+        "href": "https://github.com/nexu-io/open-design/tree/main/skills/critique"
+      },
+      {
+        "badge": "Runtime",
+        "num": "Nº 05",
+        "year": "2026",
+        "title": "Soft Systems",
+        "body": "Sandboxed iframe preview. Streaming todos. Real-cwd filesystem. Adaptive loops between human and machine.",
+        "href": "https://github.com/nexu-io/open-design/tree/main/apps/daemon"
+      }
+    ],
+    "progress": {
+      "total": 8,
+      "filled": 5
+    },
+    "foot": "05 / 31 SKILLS &nbsp;·&nbsp; <a class='library-link' href='https://github.com/nexu-io/open-design/tree/main/skills' target='_blank' rel='noreferrer noopener' style='color:var(--coral);'>VIEW FULL LIBRARY →</a>"
+  },
+  "method": {
+    "label": "Method",
+    "ix": "· Nº 05",
+    "headline": [
+      {
+        "text": "From "
+      },
+      {
+        "text": "signals",
+        "em": true
+      },
+      {
+        "text": " to systems"
+      },
+      {
+        "text": ".",
+        "dot": true
+      }
+    ],
+    "right": "Every stage is iterative, visual, and research-driven — composable files, not opaque prompts.",
+    "steps": [
+      {
+        "num": "01",
+        "title": "Detect",
+        "body": "The daemon scans your $PATH for 12 coding agents and auto-loads 31 skills + 72 systems on boot."
+      },
+      {
+        "num": "02",
+        "title": "Discover",
+        "body": "Turn 1 is a question form — surface, audience, tone, scale, brand context. Locked in 30 seconds."
+      },
+      {
+        "num": "03",
+        "title": "Direct",
+        "body": "Pick one of 5 deterministic visual directions. Palette in OKLch, font stack, layout posture cues."
+      },
+      {
+        "num": "04",
+        "title": "Deliver",
+        "body": "The agent writes to disk, you preview in a sandboxed iframe, export HTML / PDF / PPTX / ZIP / Markdown."
+      }
+    ],
+    "foot_left": "Skills inform everything. Files make it real.",
+    "foot_right_bold": "github.com/nexu-io/open-design",
+    "foot_right_rest": "Apache-2.0"
+  },
+  "work": {
+    "label": "Selected work",
+    "headline": [
+      {
+        "text": "Selected "
+      },
+      {
+        "text": "mechanisms",
+        "em": true
+      }
+    ],
+    "link_label": "View all 31 skills",
+    "link_href": "https://github.com/nexu-io/open-design/tree/main/skills",
+    "cards": [
+      {
+        "small_label": "Featured skill",
+        "index": "01 / 31",
+        "title": "guizang-ppt",
+        "body": "Magazine-style web PPT for product launches and pitch decks. Bundled verbatim, original LICENSE preserved.",
+        "year": "2026 · DECK",
+        "tag": "DEFAULT"
+      },
+      {
+        "small_label": "Companion system",
+        "index": "04 / 72",
+        "title": "kami",
+        "body": "An editorial paper system. Warm parchment canvas, ink-blue accent, serif-led hierarchy — multilingual by design (EN · zh-CN · ja).",
+        "year": "2026 · PAPER",
+        "tag": "SYSTEM"
+      }
+    ]
+  },
+  "testimonial": {
+    "label": "Collaborators",
+    "ix": "· Nº 06",
+    "quote": [
+      {
+        "text": "He builds AI agents that operate with the "
+      },
+      {
+        "text": "precision",
+        "em": true
+      },
+      {
+        "text": " of a Swiss watchmaker and the "
+      },
+      {
+        "text": "grace",
+        "em": true
+      },
+      {
+        "text": " of a French courtier."
+      }
+    ],
+    "author": {
+      "initial": "m",
+      "name": "Mina Kovac",
+      "title": "Creative Director · North Form"
+    },
+    "partners_text": "Standing on the shoulders of teams shipping open-source design culture.",
+    "partners": [
+      {
+        "glyph_svg": "<path d='M5 24L20 6L35 24M12 18h16'/>",
+        "name": "huashu-design",
+        "role": "Philosophy",
+        "href": "https://github.com/alchaincyf/huashu-design"
+      },
+      {
+        "glyph_svg": "<path d='M8 24L20 6L24 22L36 4'/>",
+        "name": "guizang-ppt",
+        "role": "Decks",
+        "href": "https://github.com/op7418/guizang-ppt-skill"
+      },
+      {
+        "glyph_svg": "<rect x='6' y='6' width='4' height='18'/><rect x='14' y='6' width='4' height='18'/><rect x='22' y='6' width='4' height='18'/><rect x='30' y='6' width='4' height='18'/>",
+        "name": "multica-ai",
+        "role": "Daemon",
+        "href": "https://github.com/multica-ai/multica"
+      },
+      {
+        "glyph_svg": "<circle cx='15' cy='15' r='9'/><path d='M15 6v18M6 15h18'/>",
+        "name": "open-codesign",
+        "role": "UX",
+        "href": "https://github.com/OpenCoworkAI/open-codesign"
+      },
+      {
+        "glyph_svg": "<path d='M5 8l9 7-9 7M20 24h18'/>",
+        "name": "Devin CLI",
+        "role": "Terminal",
+        "href": "https://devin.ai/terminal"
+      },
+      {
+        "glyph_svg": "<rect x='4' y='5' width='22' height='18'/><rect x='14' y='9' width='22' height='18'/>",
+        "name": "hyperframes",
+        "role": "Frames",
+        "href": "https://github.com/heygen-com/hyperframes"
+      }
+    ],
+    "read_more_label": "Read more stories",
+    "read_more_href": "https://github.com/nexu-io/open-design"
+  },
+  "cta": {
+    "label": "Start a conversation",
+    "ix": "· Nº 07",
+    "headline": [
+      {
+        "text": "Let's build something "
+      },
+      {
+        "text": "open",
+        "em": true
+      },
+      {
+        "text": " and "
+      },
+      {
+        "text": "visually",
+        "em": true
+      },
+      {
+        "text": " unforgettable"
+      },
+      {
+        "text": ".",
+        "dot": true
+      }
+    ],
+    "lead": "Star us on GitHub, drop into the issues, or run <code class='code-inline'>pnpm tools-dev</code> tonight. Three commands and the loop is yours.",
+    "primary": {
+      "label": "Star on GitHub",
+      "href": "https://github.com/nexu-io/open-design"
+    },
+    "ribbon": "OPEN DESIGN &nbsp;·&nbsp; FIN."
+  },
+  "wire": {
+    "title": "From the field",
+    "cities": [
+      {
+        "name": "Berlin",
+        "coord": "52.52°N"
+      },
+      {
+        "name": "Tokyo",
+        "coord": "35.68°N"
+      },
+      {
+        "name": "Shanghai",
+        "coord": "31.23°N"
+      },
+      {
+        "name": "Beijing",
+        "coord": "39.90°N"
+      },
+      {
+        "name": "Taipei",
+        "coord": "25.03°N"
+      },
+      {
+        "name": "Singapore",
+        "coord": "1.35°N"
+      },
+      {
+        "name": "Bangalore",
+        "coord": "12.97°N"
+      },
+      {
+        "name": "Dubai",
+        "coord": "25.20°N"
+      },
+      {
+        "name": "Lagos",
+        "coord": "6.52°N"
+      },
+      {
+        "name": "Nairobi",
+        "coord": "1.29°S"
+      },
+      {
+        "name": "Cape Town",
+        "coord": "33.92°S"
+      },
+      {
+        "name": "Lisbon",
+        "coord": "38.72°N"
+      },
+      {
+        "name": "Madrid",
+        "coord": "40.42°N"
+      },
+      {
+        "name": "Paris",
+        "coord": "48.86°N"
+      },
+      {
+        "name": "London",
+        "coord": "51.51°N"
+      },
+      {
+        "name": "Amsterdam",
+        "coord": "52.37°N"
+      },
+      {
+        "name": "Stockholm",
+        "coord": "59.33°N"
+      },
+      {
+        "name": "Toronto",
+        "coord": "43.65°N"
+      },
+      {
+        "name": "New York",
+        "coord": "40.71°N"
+      },
+      {
+        "name": "San Francisco",
+        "coord": "37.77°N"
+      },
+      {
+        "name": "Mexico City",
+        "coord": "19.43°N"
+      },
+      {
+        "name": "São Paulo",
+        "coord": "23.55°S"
+      },
+      {
+        "name": "Sydney",
+        "coord": "33.87°S"
+      }
+    ],
+    "contributors": [
+      {
+        "handle": "tw93",
+        "role": "kami",
+        "href": "https://github.com/tw93"
+      },
+      {
+        "handle": "op7418",
+        "role": "guizang",
+        "href": "https://github.com/op7418"
+      },
+      {
+        "handle": "alchaincyf",
+        "role": "huashu",
+        "href": "https://github.com/alchaincyf"
+      },
+      {
+        "handle": "multica-ai",
+        "role": "daemon",
+        "href": "https://github.com/multica-ai"
+      },
+      {
+        "handle": "OpenCoworkAI",
+        "role": "codesign",
+        "href": "https://github.com/OpenCoworkAI"
+      },
+      {
+        "handle": "nexu-io",
+        "role": "studio",
+        "href": "https://github.com/nexu-io"
+      },
+      {
+        "handle": "you",
+        "role": "be next",
+        "href": "https://github.com/nexu-io/open-design/graphs/contributors"
+      }
+    ]
+  },
+  "footer": {
+    "brand_description": "Joseph is an Agentic Engineer focused on the intersection of autonomous AI systems and classical Rococo aesthetics.",
+    "brand_cta": {
+      "label": "Download desktop",
+      "href": "https://github.com/nexu-io/open-design/releases",
+      "meta": "macOS · v0.3.0"
+    },
+    "columns": [
+      {
+        "title": "Studio",
+        "links": [
+          {
+            "label": "Capabilities",
+            "href": "#agents"
+          },
+          {
+            "label": "Labs",
+            "href": "#labs"
+          },
+          {
+            "label": "Method",
+            "href": "https://github.com/nexu-io/open-design/tree/main/apps/daemon"
+          },
+          {
+            "label": "Manifesto",
+            "href": "https://github.com/nexu-io/open-design"
+          }
+        ]
+      },
+      {
+        "title": "Library",
+        "links": [
+          {
+            "label": "31 Skills",
+            "href": "https://github.com/nexu-io/open-design/tree/main/skills"
+          },
+          {
+            "label": "72 Systems",
+            "href": "https://github.com/nexu-io/open-design/tree/main/design-systems"
+          },
+          {
+            "label": "5 Directions",
+            "href": "https://github.com/nexu-io/open-design/tree/main/design-systems"
+          },
+          {
+            "label": "5 Frames",
+            "href": "https://github.com/nexu-io/open-design/tree/main/skills/hyperframes"
+          }
+        ]
+      },
+      {
+        "title": "Connect",
+        "links": [
+          {
+            "label": "GitHub",
+            "href": "https://github.com/nexu-io/open-design"
+          },
+          {
+            "label": "Issues",
+            "href": "https://github.com/nexu-io/open-design/issues"
+          },
+          {
+            "label": "Contributors",
+            "href": "https://github.com/nexu-io/open-design/graphs/contributors"
+          },
+          {
+            "label": "Releases",
+            "href": "https://github.com/nexu-io/open-design/releases"
+          }
+        ]
+      },
+      {
+        "title": "Docs",
+        "links": [
+          {
+            "label": "Quickstart",
+            "href": "https://github.com/nexu-io/open-design/blob/main/QUICKSTART.md"
+          },
+          {
+            "label": "Architecture",
+            "href": "https://github.com/nexu-io/open-design/blob/main/docs/architecture.md"
+          },
+          {
+            "label": "Skill Protocol",
+            "href": "https://github.com/nexu-io/open-design/blob/main/docs/skills-protocol.md"
+          },
+          {
+            "label": "Roadmap",
+            "href": "https://github.com/nexu-io/open-design/blob/main/docs/roadmap.md"
+          }
+        ]
+      }
+    ],
+    "mega": [
+      {
+        "text": "Agentic "
+      },
+      {
+        "text": "Elegance",
+        "em": true
+      }
+    ]
+  },
+  "imagery": {
+    "strategy": "bring-your-own",
+    "assets_path": "./assets/",
+    "provider": "fal"
+  }
+}

@@ -1,0 +1,2661 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <script>document.documentElement.classList.add('js-enabled');</script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Joseph - Agentic Engineer</title>
+  <meta name="description" content="Joseph is an Agentic Engineer building reliable AI workflows, evaluation loops, and human-centered automation systems.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;500;600;700;800&family=Playfair+Display:ital,wght@0,500..800;1,500..800&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --paper: #f4efe5;
+      --paper-2: #fbf7ee;
+      --ink: #181511;
+      --ink-soft: #4e473f;
+      --muted: #81786e;
+      --rule: rgba(24, 21, 17, 0.18);
+      --rule-strong: rgba(24, 21, 17, 0.34);
+      --coral: #d96b5f;
+      --gilt: #b79b5b;
+      --blue: #334c63;
+      --rose: #d8aaa0;
+      --shadow: 0 26px 70px rgba(36, 28, 18, 0.14);
+      --display: "Playfair Display", "Iowan Old Style", "Palatino Linotype", Georgia, serif;
+      --body: "Inter Tight", "Avenir Next", -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+      --mono: "JetBrains Mono", "IBM Plex Mono", ui-monospace, SFMono-Regular, Menlo, monospace;
+      --page: min(1680px, calc(100vw - 40px));
+      --gutter: clamp(20px, 4vw, 72px);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+      background: var(--paper);
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: var(--body);
+      overflow-x: hidden;
+      position: relative;
+      background:
+        radial-gradient(circle at 18% 12%, rgba(216, 170, 160, 0.24), transparent 28vw),
+        radial-gradient(circle at 88% 30%, rgba(183, 155, 91, 0.16), transparent 30vw),
+        linear-gradient(90deg, rgba(24, 21, 17, 0.032) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(24, 21, 17, 0.024) 1px, transparent 1px),
+        var(--paper);
+      background-size: auto, auto, 24px 24px, 24px 24px, auto;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: geometricPrecision;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.42;
+      z-index: 1;
+      background-image:
+        radial-gradient(rgba(24, 21, 17, 0.12) 0.7px, transparent 0.7px);
+      background-size: 5px 5px;
+      mix-blend-mode: multiply;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    img {
+      display: block;
+      max-width: 100%;
+    }
+
+    button,
+    input {
+      font: inherit;
+    }
+
+    .shell {
+      position: relative;
+      z-index: 2;
+      width: var(--page);
+      margin: 0 auto;
+      padding: 18px 0 42px;
+    }
+
+    .issue-strip {
+      display: grid;
+      grid-template-columns: 1fr auto 1fr;
+      gap: 18px;
+      align-items: center;
+      min-height: 38px;
+      border-top: 1px dotted var(--rule-strong);
+      border-bottom: 1px dotted var(--rule-strong);
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.11em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+
+    .issue-strip span:nth-child(2) {
+      color: var(--ink);
+    }
+
+    .issue-right {
+      display: inline-flex;
+      align-items: center;
+      justify-content: flex-end;
+      gap: 14px;
+      text-align: right;
+      flex-wrap: wrap;
+    }
+
+    .issue-right .lang-switch {
+      position: relative;
+      display: inline-block;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-align: left;
+    }
+
+    .lang-trigger {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: transparent;
+      border: 1px solid var(--rule-strong);
+      border-radius: 0;
+      padding: 4px 10px;
+      color: var(--ink-soft);
+      font-family: inherit;
+      font-size: inherit;
+      letter-spacing: inherit;
+      text-transform: inherit;
+      cursor: pointer;
+      outline: none;
+      transition: border-color 200ms ease, color 200ms ease, background-color 200ms ease;
+    }
+
+    .lang-trigger:hover,
+    .lang-trigger:focus-visible {
+      color: var(--ink);
+      border-color: var(--ink);
+      background: rgba(24, 21, 17, 0.02);
+    }
+
+    .lang-chevron {
+      width: 10px;
+      height: 10px;
+      fill: currentColor;
+      transition: transform 200ms ease;
+    }
+
+    .lang-switch.is-open .lang-chevron {
+      transform: rotate(180deg);
+    }
+
+    .lang-dropdown {
+      position: absolute;
+      right: 0;
+      top: calc(100% + 4px);
+      background: var(--paper-2);
+      border: 1px solid var(--ink);
+      border-radius: 0;
+      padding: 2px 0;
+      margin: 0;
+      list-style: none;
+      min-width: 96px;
+      box-shadow: 0 8px 24px rgba(24, 21, 17, 0.1);
+      opacity: 0;
+      visibility: hidden;
+      transform: translateY(-4px);
+      transition: opacity 200ms cubic-bezier(0.16, 1, 0.3, 1), transform 200ms cubic-bezier(0.16, 1, 0.3, 1), visibility 200ms;
+      z-index: 1000;
+    }
+
+    .lang-switch.is-open .lang-dropdown {
+      opacity: 1;
+      visibility: visible;
+      transform: translateY(0);
+    }
+
+    .lang-option {
+      padding: 6px 12px;
+      color: var(--ink-soft);
+      cursor: pointer;
+      transition: background-color 150ms ease, color 150ms ease;
+    }
+
+    .lang-option:hover {
+      background: rgba(24, 21, 17, 0.04);
+      color: var(--ink);
+    }
+
+    .lang-option.is-active {
+      background: var(--ink);
+      color: var(--paper-2);
+    }
+
+    .nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: grid;
+      grid-template-columns: auto 1fr auto;
+      gap: 24px;
+      align-items: center;
+      min-height: 76px;
+      margin: 18px 0 0;
+      padding: 0 18px;
+      border: 1px solid var(--rule);
+      background: color-mix(in srgb, var(--paper-2) 86%, transparent);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 1px 0 rgba(24, 21, 17, 0.06);
+      transition: min-height 180ms ease, background 180ms ease;
+    }
+
+    @media (max-width: 720px) {
+      .nav-links {
+        display: none;
+      }
+    }
+
+    .nav.is-compact {
+      min-height: 58px;
+      background: color-mix(in srgb, var(--paper-2) 94%, transparent);
+    }
+
+    .brand-mark {
+      display: grid;
+      place-items: center;
+      width: 42px;
+      height: 42px;
+      border: 1px solid var(--ink);
+      border-radius: 50%;
+      font-family: var(--display);
+      font-size: 25px;
+      font-style: italic;
+      line-height: 1;
+      background: var(--paper-2);
+    }
+
+    .nav-links {
+      display: flex;
+      justify-content: center;
+      gap: clamp(14px, 2.4vw, 34px);
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+
+    .nav-links a {
+      position: relative;
+      padding: 10px 0;
+    }
+
+    .nav-links a::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 5px;
+      height: 1px;
+      transform: scaleX(0);
+      transform-origin: left;
+      background: var(--coral);
+      transition: transform 180ms ease;
+    }
+
+    .nav-links a:hover::after,
+    .nav-links a:focus-visible::after {
+      transform: scaleX(1);
+    }
+
+    .nav-cta {
+      display: inline-flex;
+      align-items: center;
+      min-height: 38px;
+      padding: 0 14px;
+      border: 1px solid var(--ink);
+      border-radius: 999px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: var(--ink);
+      color: var(--paper-2);
+    }
+
+    .section {
+      position: relative;
+      padding: clamp(70px, 8vw, 138px) 0;
+      border-bottom: 1px dotted var(--rule-strong);
+    }
+
+    .section-label {
+      display: grid;
+      grid-template-columns: auto 1fr;
+      gap: 16px;
+      align-items: center;
+      margin-bottom: clamp(26px, 4vw, 54px);
+      color: var(--ink-soft);
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .section-label::after {
+      content: "";
+      height: 1px;
+      border-top: 1px dotted var(--rule-strong);
+    }
+
+    .display {
+      margin: 0;
+      font-family: var(--body);
+      font-size: clamp(38px, 5.8vw, 92px);
+      font-weight: 720;
+      line-height: 0.94;
+      letter-spacing: -0.04em;
+      text-wrap: balance;
+    }
+
+    .display em,
+    .serif {
+      font-family: var(--display);
+      font-style: italic;
+      font-weight: 500;
+      letter-spacing: -0.035em;
+    }
+
+    .dot::after {
+      content: ".";
+      color: var(--coral);
+      font-family: var(--display);
+      font-style: italic;
+    }
+
+    .lead {
+      margin: 0;
+      color: var(--ink-soft);
+      font-size: clamp(18px, 1.85vw, 28px);
+      line-height: 1.18;
+      letter-spacing: -0.02em;
+      text-wrap: pretty;
+    }
+
+    .body-copy {
+      color: var(--ink-soft);
+      font-size: clamp(15px, 1.05vw, 18px);
+      line-height: 1.62;
+      text-wrap: pretty;
+    }
+
+    .kicker {
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .hero {
+      min-height: calc(100vh - 150px);
+      display: grid;
+      grid-template-columns: minmax(0, 1.05fr) minmax(300px, 0.78fr);
+      gap: clamp(40px, 7vw, 110px);
+      align-items: center;
+      padding-top: clamp(26px, 3vw, 44px);
+      padding-bottom: clamp(20px, 2.5vw, 36px);
+    }
+
+    .hero-copy {
+      position: relative;
+      z-index: 2;
+      display: grid;
+      gap: clamp(14px, 2.2vw, 30px);
+    }
+
+    #hero-title {
+      font-size: clamp(34px, 4.4vw, 76px);
+      line-height: 0.98;
+      letter-spacing: -0.035em;
+    }
+
+    .hero-topline {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+
+    .hero-topline b {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 32px;
+      padding: 0 12px;
+      border: 1px dotted var(--rule-strong);
+      border-radius: 999px;
+      background: rgba(251, 247, 238, 0.56);
+      color: var(--ink-soft);
+    }
+
+    .hero-bottom {
+      display: grid;
+      grid-template-columns: minmax(220px, 0.78fr) minmax(260px, 1fr);
+      gap: clamp(28px, 5vw, 80px);
+      align-items: start;
+    }
+
+    .index-card {
+      border-top: 1px solid var(--ink);
+      padding-top: 16px;
+      display: grid;
+      gap: 10px;
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .index-row {
+      display: grid;
+      grid-template-columns: 34px 1fr auto;
+      gap: 10px;
+      align-items: center;
+      padding: 10px 0;
+      border-bottom: 1px dotted var(--rule);
+      color: var(--ink-soft);
+    }
+
+    .index-row strong {
+      color: var(--ink);
+      font-weight: 600;
+    }
+
+    .hero-plate {
+      position: relative;
+      z-index: 2;
+      align-self: stretch;
+      min-height: 640px;
+      isolation: isolate;
+      overflow: visible;
+    }
+
+    .plate-frame {
+      position: relative;
+      overflow: hidden;
+      height: 100%;
+      min-height: 480px;
+      border: 1px solid var(--ink);
+      background: var(--paper-2);
+      box-shadow: var(--shadow);
+    }
+
+    .plate-frame img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: saturate(0.9) contrast(1.02);
+    }
+
+    .plate-frame::after {
+      content: "";
+      position: absolute;
+      inset: 16px;
+      border: 1px dotted rgba(24, 21, 17, 0.46);
+      pointer-events: none;
+      mix-blend-mode: multiply;
+    }
+
+    .plate-caption {
+      position: absolute;
+      left: -28px;
+      bottom: 38px;
+      transform: rotate(-90deg);
+      transform-origin: left bottom;
+      font-family: var(--mono);
+      font-size: 9px;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--muted);
+      z-index: 2;
+    }
+
+    .ring-stack {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 14px;
+      margin-top: 8px;
+    }
+
+    .ring {
+      display: grid;
+      place-items: center;
+      width: 100px;
+      height: 100px;
+      border: 1px solid var(--ink);
+      border-radius: 50%;
+      background: rgba(251, 247, 238, 0.88);
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.1em;
+      text-align: center;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+    }
+
+    .ring strong {
+      display: block;
+      font-family: var(--display);
+      font-size: 22px;
+      font-style: italic;
+      font-weight: 500;
+      line-height: 1;
+      color: var(--ink);
+      letter-spacing: -0.03em;
+    }
+
+    .two-col {
+      display: grid;
+      grid-template-columns: minmax(280px, 0.94fr) minmax(0, 1fr);
+      gap: clamp(28px, 5vw, 80px);
+      align-items: start;
+    }
+
+    .intro-panel {
+      position: sticky;
+      top: 112px;
+      display: grid;
+      gap: 22px;
+    }
+
+    .portrait-stack {
+      display: grid;
+      grid-template-columns: 1fr 0.92fr;
+      gap: 16px;
+      align-items: end;
+    }
+
+    .small-plate,
+    .wide-plate {
+      overflow: hidden;
+      border: 1px solid var(--ink);
+      background: var(--paper-2);
+    }
+
+    .small-plate img,
+    .wide-plate img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .small-plate {
+      aspect-ratio: 4 / 5;
+      transform: rotate(-1.2deg);
+    }
+
+    .small-plate:nth-child(2) {
+      transform: rotate(1.8deg);
+      margin-bottom: 36px;
+    }
+
+    .wide-plate {
+      aspect-ratio: 16 / 9;
+      margin-top: 26px;
+    }
+
+    .manifesto {
+      display: grid;
+      gap: clamp(28px, 4vw, 58px);
+    }
+
+    .pull {
+      margin: 0;
+      max-width: 1050px;
+      font-family: var(--display);
+      font-size: clamp(34px, 4.8vw, 82px);
+      font-style: italic;
+      font-weight: 500;
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+      text-wrap: balance;
+    }
+
+    .text-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(22px, 4vw, 58px);
+    }
+
+    .cap-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 1px;
+      border: 1px solid var(--ink);
+      background: var(--ink);
+    }
+
+    .cap-card {
+      min-height: 350px;
+      padding: clamp(22px, 2.3vw, 34px);
+      display: grid;
+      grid-template-rows: auto auto 1fr auto;
+      gap: 22px;
+      background: var(--paper-2);
+    }
+
+    .cap-card .num {
+      font-family: var(--display);
+      font-size: 62px;
+      font-style: italic;
+      line-height: 0.9;
+      color: var(--coral);
+    }
+
+    .cap-card h3 {
+      margin: 0;
+      font-size: clamp(24px, 2vw, 34px);
+      line-height: 1;
+      letter-spacing: -0.035em;
+    }
+
+    .cap-card p {
+      margin: 0;
+      align-self: end;
+      color: var(--ink-soft);
+      font-size: 16px;
+      line-height: 1.55;
+    }
+
+    .cap-card small {
+      font-family: var(--mono);
+      font-size: 10px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .labs-layout {
+      display: grid;
+      grid-template-columns: minmax(280px, 0.62fr) minmax(0, 1fr);
+      gap: clamp(34px, 5vw, 80px);
+      align-items: start;
+    }
+
+    .filter-rail {
+      position: sticky;
+      top: 112px;
+      display: grid;
+      gap: 16px;
+      padding: 24px;
+      border: 1px solid var(--ink);
+      background: var(--paper-2);
+    }
+
+    .filter-pills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .filter-pills button {
+      min-height: 34px;
+      padding: 0 12px;
+      border: 1px dotted var(--rule-strong);
+      border-radius: 999px;
+      background: transparent;
+      color: var(--ink-soft);
+      cursor: pointer;
+    }
+
+    .filter-pills button.is-active {
+      border-style: solid;
+      background: var(--ink);
+      color: var(--paper-2);
+    }
+
+    .progress {
+      height: 6px;
+      overflow: hidden;
+      border: 1px solid var(--ink);
+      background: var(--paper);
+    }
+
+    .progress span {
+      display: block;
+      width: 62%;
+      height: 100%;
+      background: linear-gradient(90deg, var(--coral), var(--gilt));
+    }
+
+    .lab-list {
+      display: grid;
+      gap: 18px;
+    }
+
+    .lab-card {
+      display: grid;
+      grid-template-columns: 190px minmax(0, 1fr) auto;
+      gap: 24px;
+      align-items: stretch;
+      min-height: 190px;
+      padding: 14px;
+      border: 1px solid var(--rule-strong);
+      background: rgba(251, 247, 238, 0.7);
+      transition: transform 180ms ease, border-color 180ms ease;
+    }
+
+    .lab-card:hover {
+      transform: translateY(-3px);
+      border-color: var(--ink);
+    }
+
+    .lab-card img {
+      width: 100%;
+      height: 100%;
+      min-height: 160px;
+      object-fit: cover;
+      border: 1px solid var(--ink);
+    }
+
+    .lab-card h3 {
+      margin: 4px 0 12px;
+      max-width: 680px;
+      font-size: clamp(25px, 2.4vw, 42px);
+      line-height: 0.98;
+      letter-spacing: -0.035em;
+      text-wrap: balance;
+    }
+
+    .lab-card p {
+      margin: 0;
+      max-width: 640px;
+      color: var(--ink-soft);
+      font-size: 16px;
+      line-height: 1.55;
+    }
+
+    .lab-card .arrow {
+      align-self: start;
+      width: 42px;
+      height: 42px;
+      display: grid;
+      place-items: center;
+      border: 1px solid var(--ink);
+      border-radius: 50%;
+      font-family: var(--display);
+      font-size: 30px;
+      color: var(--coral);
+    }
+
+    .method-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: clamp(14px, 1.5vw, 24px);
+    }
+
+    .method-step {
+      display: grid;
+      gap: 18px;
+      padding-top: 14px;
+      border-top: 1px solid var(--ink);
+    }
+
+    .method-step img {
+      width: 100%;
+      aspect-ratio: 1 / 1.08;
+      object-fit: cover;
+      border: 1px solid var(--ink);
+      background: var(--paper-2);
+    }
+
+    .method-step h3 {
+      margin: 0;
+      font-size: clamp(22px, 1.9vw, 32px);
+      line-height: 1;
+      letter-spacing: -0.03em;
+    }
+
+    .method-step p {
+      margin: 0;
+      color: var(--ink-soft);
+      line-height: 1.52;
+    }
+
+    .dark-slab {
+      margin-inline: calc((100vw - var(--page)) / -2);
+      padding: clamp(58px, 7vw, 112px) max(var(--gutter), calc((100vw - var(--page)) / 2));
+      background:
+        linear-gradient(90deg, rgba(244, 239, 229, 0.06) 1px, transparent 1px),
+        linear-gradient(0deg, rgba(244, 239, 229, 0.04) 1px, transparent 1px),
+        #171511;
+      background-size: 28px 28px;
+      color: var(--paper-2);
+    }
+
+    .dark-slab .section-label,
+    .dark-slab .kicker,
+    .dark-slab .body-copy {
+      color: rgba(251, 247, 238, 0.72);
+    }
+
+    .work-header {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(280px, 0.36fr);
+      gap: 32px;
+      align-items: end;
+      margin-bottom: clamp(34px, 5vw, 80px);
+    }
+
+    .work-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: clamp(18px, 3vw, 44px);
+    }
+
+    .work-card {
+      position: relative;
+      display: grid;
+      grid-template-rows: auto 1fr;
+      min-height: 600px;
+      padding: clamp(18px, 2vw, 26px);
+      border: 1px solid rgba(251, 247, 238, 0.6);
+      background: #211f1b;
+      --rotate: -1.1deg;
+      --y: 0px;
+      transform: rotate(var(--rotate)) translateY(var(--y));
+      transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1), border-color 300ms ease, box-shadow 300ms ease;
+    }
+
+    .work-card:hover {
+      border-color: rgba(251, 247, 238, 0.95);
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3);
+      z-index: 10;
+    }
+
+    .work-card:nth-child(1):hover {
+      transform: scale(1.03) rotate(0deg) translateY(-20px);
+    }
+
+    .work-card:nth-child(2) {
+      --rotate: 1.2deg;
+      --y: 34px;
+    }
+    .work-card:nth-child(2):hover {
+      transform: scale(1.03) rotate(0deg) translateY(14px);
+    }
+
+    .work-card:nth-child(3) {
+      --rotate: -0.8deg;
+      --y: 12px;
+    }
+    .work-card:nth-child(3):hover {
+      transform: scale(1.03) rotate(0deg) translateY(-8px);
+    }
+
+    .work-card img {
+      width: 100%;
+      aspect-ratio: 16 / 11;
+      object-fit: cover;
+      border: 1px solid rgba(251, 247, 238, 0.5);
+      filter: saturate(0.92);
+    }
+
+    .work-card h3 {
+      margin: clamp(28px, 3vw, 44px) 0 16px;
+      font-size: clamp(34px, 4vw, 72px);
+      line-height: 0.92;
+      letter-spacing: -0.045em;
+      text-wrap: balance;
+    }
+
+    .work-card p {
+      max-width: 660px;
+      margin: 0;
+      color: rgba(251, 247, 238, 0.76);
+      font-size: clamp(17px, 1.15vw, 21px);
+      line-height: 1.5;
+    }
+
+    .quote-layout {
+      display: grid;
+      grid-template-columns: minmax(300px, 0.46fr) minmax(0, 1fr);
+      gap: clamp(32px, 6vw, 96px);
+      align-items: center;
+    }
+
+    .quote-plate {
+      position: relative;
+      border: 1px solid var(--ink);
+      background: var(--paper-2);
+      box-shadow: var(--shadow);
+    }
+
+    .quote-plate img {
+      width: 100%;
+      aspect-ratio: 4 / 5;
+      object-fit: cover;
+    }
+
+    blockquote {
+      margin: 0;
+      font-family: var(--display);
+      font-size: clamp(30px, 4.2vw, 68px);
+      font-style: italic;
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+      text-wrap: balance;
+    }
+
+    .glyphs {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1px;
+      margin-top: 42px;
+      border: 1px solid var(--ink);
+      background: var(--ink);
+    }
+
+    .glyphs span {
+      display: grid;
+      place-items: center;
+      min-height: 74px;
+      background: var(--paper-2);
+      font-family: var(--display);
+      font-size: 34px;
+      font-style: italic;
+      color: var(--ink-soft);
+    }
+
+    .cta {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(320px, 0.52fr);
+      gap: clamp(32px, 6vw, 96px);
+      align-items: stretch;
+    }
+
+    .cta-panel {
+      display: grid;
+      align-content: space-between;
+      gap: 36px;
+      padding: clamp(30px, 4vw, 58px);
+      border: 1px solid var(--ink);
+      background: var(--paper-2);
+      --rotate: -0.8deg;
+      --x: 16px;
+      --y: 0px;
+      transform: rotate(var(--rotate)) translate(var(--x), var(--y));
+      transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1), border-color 300ms ease, box-shadow 300ms ease;
+    }
+
+    .cta-panel:hover {
+      border-color: rgba(24, 21, 17, 0.85);
+      transform: scale(1.01) rotate(0deg) translate(0px, -4px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .contact-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      align-items: center;
+    }
+
+    .contact-pill {
+      min-height: 44px;
+      display: inline-flex;
+      align-items: center;
+      padding: 0 16px;
+      border: 1px solid var(--ink);
+      border-radius: 999px;
+      background: var(--ink);
+      color: var(--paper-2);
+      font-family: var(--mono);
+      font-size: 12px;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .contact-pill.secondary {
+      background: transparent;
+      color: var(--ink);
+      border-style: dotted;
+    }
+
+    .contact-pill svg {
+      width: 16px;
+      height: 16px;
+      margin-right: 8px;
+      flex-shrink: 0;
+      fill: currentColor;
+    }
+
+    .cta-image {
+      overflow: hidden;
+      border: 1px solid var(--ink);
+      background: var(--paper-2);
+      --rotate: 1.1deg;
+      --y: 16px;
+      transform: rotate(var(--rotate)) translateY(var(--y));
+      transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1), border-color 300ms ease, box-shadow 300ms ease;
+    }
+
+    .cta-image:hover {
+      border-color: rgba(24, 21, 17, 0.85);
+      transform: scale(1.02) rotate(0deg) translateY(8px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+    }
+
+    .cta-image img {
+      width: 100%;
+      height: 100%;
+      min-height: 480px;
+      object-fit: cover;
+    }
+
+    .footer {
+      padding: 44px 0 0;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr repeat(3, 0.8fr);
+      gap: clamp(22px, 4vw, 68px);
+      padding-bottom: 44px;
+      border-bottom: 1px dotted var(--rule-strong);
+    }
+
+    .footer h4 {
+      margin: 0 0 14px;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .footer p,
+    .footer a {
+      display: block;
+      margin: 0 0 8px;
+      color: var(--ink-soft);
+      line-height: 1.5;
+    }
+
+    .mega {
+      margin: 30px 0 0;
+      font-family: var(--display);
+      font-size: clamp(64px, 13vw, 238px);
+      font-style: italic;
+      font-weight: 500;
+      line-height: 0.78;
+      letter-spacing: -0.06em;
+      text-align: center;
+    }
+
+    [data-reveal] {
+      opacity: 0;
+      transform: translateY(32px) rotate(var(--rotate, 0deg)) translate(var(--x, 0px), var(--y, 0px));
+      transition: opacity 800ms cubic-bezier(0.16, 1, 0.3, 1), transform 800ms cubic-bezier(0.16, 1, 0.3, 1);
+      transition-delay: var(--delay, 0ms);
+    }
+
+    [data-reveal].is-visible {
+      opacity: 1;
+      transform: translateY(0) rotate(var(--rotate, 0deg)) translate(var(--x, 0px), var(--y, 0px));
+    }
+
+    /* --- Interactive Image Trail Background --- */
+    .trail-bg {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 999;
+      pointer-events: none;
+      overflow: hidden;
+    }
+
+    .trail-bg .content__img {
+      width: 150px;
+      aspect-ratio: 1.1;
+      border: 1px solid var(--ink);
+      background: var(--paper-2);
+      box-shadow: 0 10px 25px rgba(24, 21, 17, 0.15);
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+      overflow: hidden;
+      will-change: transform, filter;
+    }
+
+    .trail-bg .content__img-inner {
+      background-position: 50% 50%;
+      width: 100%;
+      height: 100%;
+      background-size: cover;
+      position: absolute;
+      top: 0;
+      left: 0;
+      filter: saturate(0.8);
+    }
+
+    /* --- Card Swap Component --- */
+    .card-swap-container {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      min-height: 680px;
+      perspective: 1200px;
+      overflow: visible;
+    }
+
+    .card-swap-container .card {
+      position: absolute;
+      top: 50%;
+      left: 45%;
+      width: 100%;
+      max-width: 480px;
+      height: 620px;
+      transform-style: preserve-3d;
+      will-change: transform;
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+
+    @media (max-width: 1180px) {
+      .card-swap-container .card {
+        max-width: 380px;
+        height: 500px;
+      }
+    }
+
+    /* --- Progressive Loading Preloader --- */
+    .preloader {
+      position: fixed;
+      inset: 0;
+      background: var(--paper);
+      z-index: 9999;
+      display: grid;
+      place-items: center;
+      transition: opacity 800ms cubic-bezier(0.16, 1, 0.3, 1), visibility 800ms;
+    }
+    
+    .preloader.fade-out {
+      opacity: 0;
+      visibility: hidden;
+      pointer-events: none;
+    }
+    
+    .preloader-content {
+      text-align: center;
+      font-family: var(--mono);
+      font-size: 11px;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      color: var(--ink-soft);
+      display: grid;
+      gap: 16px;
+    }
+    
+    .preloader-bar {
+      width: 140px;
+      height: 1px;
+      background: var(--rule-strong);
+      margin: 0 auto;
+      position: relative;
+      overflow: hidden;
+    }
+    
+    .preloader-bar-fill {
+      position: absolute;
+      left: 0;
+      top: 0;
+      bottom: 0;
+      width: 100%;
+      background: var(--coral);
+      transform: translateX(-100%);
+      animation: preloadProgress 2.2s cubic-bezier(0.22, 1, 0.36, 1) forwards;
+    }
+    
+    @keyframes preloadProgress {
+      0% { transform: translateX(-100%); }
+      50% { transform: translateX(-30%); }
+      100% { transform: translateX(0%); }
+    }
+    
+    /* --- Progressive Image Loading Skeleton --- */
+    .img-loading-skeleton {
+      position: relative;
+      background: rgba(24, 21, 17, 0.08) !important;
+      overflow: hidden;
+    }
+    
+    .img-loading-skeleton::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.15), transparent);
+      transform: translateX(-100%);
+      animation: skeleton-shimmer 1.6s infinite;
+      z-index: 10;
+    }
+    
+    @keyframes skeleton-shimmer {
+      100% { transform: translateX(100%); }
+    }
+    
+    .js-enabled img {
+      opacity: 0;
+      transition: opacity 600ms cubic-bezier(0.22, 1, 0.36, 1) !important;
+    }
+    
+    .js-enabled img.img-loaded {
+      opacity: 1;
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      html {
+        scroll-behavior: auto;
+      }
+
+      *,
+      *::before,
+      *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+      }
+
+      [data-reveal] {
+        opacity: 1;
+        transform: none;
+      }
+    }
+
+    @media (max-width: 1180px) {
+      .hero,
+      .two-col,
+      .labs-layout,
+      .quote-layout,
+      .cta,
+      .work-header {
+        grid-template-columns: 1fr;
+      }
+
+      .intro-panel,
+      .filter-rail {
+        position: relative;
+        top: auto;
+      }
+
+      .hero-plate,
+      .plate-frame {
+        min-height: 420px;
+      }
+
+      .ring-stack {
+        justify-content: flex-start;
+      }
+
+      .cap-grid,
+      .method-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+
+      .work-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 820px) {
+      :root {
+        --page: min(100vw - 26px, 760px);
+      }
+
+      .issue-strip {
+        grid-template-columns: 1fr;
+        gap: 6px;
+        padding: 10px 0;
+      }
+
+      .issue-right {
+        justify-content: flex-start;
+      }
+
+      .nav {
+        grid-template-columns: auto 1fr;
+        min-height: auto;
+        padding: 12px;
+      }
+
+      .nav-links {
+        grid-column: 1 / -1;
+        justify-content: flex-start;
+        overflow-x: auto;
+        padding-bottom: 4px;
+      }
+
+      .nav-cta {
+        justify-self: end;
+      }
+
+      .hero-bottom,
+      .text-grid,
+      .work-grid,
+      .footer-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .hero-plate,
+      .plate-frame {
+        min-height: 380px;
+      }
+
+      .ring-stack {
+        justify-content: center;
+      }
+
+      .ring {
+        width: 88px;
+        height: 88px;
+      }
+
+      .plate-caption {
+        left: 14px;
+        bottom: 12px;
+        transform: none;
+        background: rgba(251, 247, 238, 0.82);
+        padding: 6px 8px;
+      }
+
+      .lab-card {
+        grid-template-columns: 1fr;
+      }
+
+      .lab-card .arrow {
+        display: none;
+      }
+
+      .work-card,
+      .work-card:nth-child(2) {
+        min-height: auto;
+        transform: none;
+      }
+    }
+
+    @media (max-width: 560px) {
+      :root {
+        --page: min(100vw - 22px, 520px);
+      }
+
+      .shell {
+        padding-top: 12px;
+      }
+
+      .display {
+        font-size: clamp(34px, 14vw, 64px);
+      }
+
+      .section {
+        padding: 58px 0;
+      }
+
+      .cap-grid,
+      .method-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .cap-card {
+        min-height: 260px;
+      }
+
+      .portrait-stack {
+        grid-template-columns: 1fr;
+      }
+
+      .small-plate:nth-child(2) {
+        margin-bottom: 0;
+      }
+
+      .glyphs {
+        grid-template-columns: repeat(5, minmax(48px, 1fr));
+      }
+
+      .glyphs span {
+        min-height: 58px;
+        font-size: 26px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="trail-bg" id="global-trail" aria-hidden="true"></div>
+  <!-- Progressive Loader Overlay -->
+  <div class="preloader" id="preloader" aria-hidden="true">
+    <div class="preloader-content">
+      <span>LOADING VOLUME I</span>
+      <div class="preloader-bar">
+        <div class="preloader-bar-fill"></div>
+      </div>
+      <span style="font-size: 9px; opacity: 0.6;">JOSEPH // PORTFOLIO</span>
+    </div>
+  </div>
+
+  <div class="shell">
+    <div class="issue-strip" aria-label="Issue metadata">
+      <span data-i18n="issue.left">Personal Folio / Volume I</span>
+      <span data-i18n="issue.center">Joseph - Agentic Engineer</span>
+      <span class="issue-right">
+        <span data-i18n="issue.right">Systems, evaluation, orchestration</span>
+        <div class="lang-switch" id="lang-switch">
+          <button class="lang-trigger" id="lang-trigger" aria-haspopup="listbox" aria-expanded="false">
+            <span class="lang-current">EN</span>
+            <svg class="lang-chevron" viewBox="0 0 24 24"><path d="M7 10l5 5 5-5z"/></svg>
+          </button>
+          <ul class="lang-dropdown" id="lang-dropdown" role="listbox">
+            <li class="lang-option is-active" data-value="en" role="option">EN</li>
+            <li class="lang-option" data-value="zh" role="option">中文</li>
+            <li class="lang-option" data-value="ja" role="option">日本語</li>
+          </ul>
+        </div>
+      </span>
+    </div>
+
+    <header class="nav" id="top">
+      <a class="brand-mark" href="#top" aria-label="Joseph homepage">J</a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#about" data-i18n="nav.about">About</a>
+        <a href="#capabilities" data-i18n="nav.capabilities">Capabilities</a>
+        <a href="#labs" data-i18n="nav.labs">Labs</a>
+        <a href="#work" data-i18n="nav.work">Work</a>
+        <a href="#contact" data-i18n="nav.contact">Contact</a>
+      </nav>
+      <a class="nav-cta" href="#contact" data-i18n="nav.cta">Start a brief</a>
+    </header>
+
+    <main>
+      <section class="section hero" aria-labelledby="hero-title">
+        <div class="hero-copy">
+          <div class="section-label" data-reveal><span data-i18n="hero.label">I - Overture</span></div>
+          <div class="hero-topline" data-reveal style="--delay: 100ms">
+            <b data-i18n="hero.role">Agentic Engineer</b>
+            <span class="pill" data-i18n="hero.pill1">Human-in-the-loop automation</span>
+            <span class="pill" data-i18n="hero.pill2">Evaluation-led systems</span>
+          </div>
+
+          <h1 class="display dot" id="hero-title" data-i18n-html="hero.headline" data-reveal style="--delay: 200ms">Joseph builds <em>agentic systems</em> that behave like accountable software</h1>
+
+          <div class="ring-stack" data-reveal style="--delay: 300ms">
+            <div class="ring"><span><strong data-i18n="hero.ring1Strong">Plan</strong><span data-i18n="hero.ring1Text">task graphs</span></span></div>
+            <div class="ring"><span><strong data-i18n="hero.ring2Strong">Act</strong><span data-i18n="hero.ring2Text">tool use</span></span></div>
+            <div class="ring"><span><strong data-i18n="hero.ring3Strong">Verify</strong><span data-i18n="hero.ring3Text">eval loops</span></span></div>
+          </div>
+
+          <div class="hero-bottom" data-reveal style="--delay: 400ms">
+            <p class="lead" data-i18n="hero.lead">Personal homepage for an engineer working where product judgment, AI orchestration, and reliable execution loops meet.</p>
+            <div class="index-card" aria-label="Page index">
+              <div class="index-row"><strong>01</strong><span data-i18n="hero.idx1Label">Product agents</span><span data-i18n="hero.idx1Tag">plan</span></div>
+              <div class="index-row"><strong>02</strong><span data-i18n="hero.idx2Label">Workflow orchestration</span><span data-i18n="hero.idx2Tag">act</span></div>
+              <div class="index-row"><strong>03</strong><span data-i18n="hero.idx3Label">Evaluation harnesses</span><span data-i18n="hero.idx3Tag">verify</span></div>
+              <div class="index-row"><strong>04</strong><span data-i18n="hero.idx4Label">Editorial engineering</span><span data-i18n="hero.idx4Tag">ship</span></div>
+            </div>
+          </div>
+        </div>
+
+        <aside class="hero-plate" aria-label="Editorial collage hero" data-reveal style="overflow: visible;">
+          <div class="card-swap-container" id="hero-swap-container">
+            <div class="card">
+              <div class="plate-frame">
+                <img src="assets/hero.png" alt="Editorial collage about Joseph">
+              </div>
+            </div>
+            <div class="card">
+              <div class="plate-frame">
+                <img src="assets/about.png" alt="Surreal editorial collage plate for Joseph's homepage">
+              </div>
+            </div>
+            <div class="card">
+              <div class="plate-frame">
+                <img src="assets/capabilities.png" alt="Collage plate of technical capability">
+              </div>
+            </div>
+          </div>
+          <div class="plate-caption" data-i18n="hero.caption">Rococo machinery / autonomous systems / personal edition</div>
+        </aside>
+      </section>
+
+      <section class="section" id="about">
+        <div class="section-label"><span data-i18n="about.label">II - About</span></div>
+        <div class="two-col">
+          <aside class="intro-panel" data-reveal>
+            <div class="portrait-stack">
+              <figure class="small-plate">
+                <img src="assets/hero.png" alt="Editorial collage about Joseph">
+              </figure>
+              <figure class="small-plate">
+                <img src="assets/capabilities.png" alt="Collage plate of technical capability">
+              </figure>
+            </div>
+            <p class="kicker" data-i18n="about.kicker">Atelier Zero personal edition</p>
+          </aside>
+
+          <div class="manifesto" data-reveal style="--delay: 150ms">
+            <p class="pull" data-i18n="about.pull">An agent is only interesting when its loop can be inspected, corrected, and trusted.</p>
+            <div class="text-grid">
+              <p class="body-copy" data-i18n="about.body1">Joseph works on the practical layer of AI systems: tools, memory, handoffs, verification, and the product surfaces that let humans stay in command. The work is less about making a model sound impressive and more about making an automated process legible.</p>
+              <p class="body-copy" data-i18n="about.body2">This homepage treats that engineering stance like an editorial object: precise typography, collage imagery, and a restrained Rococo signal of gears, ornaments, and decision paths. The result is personal, but not ornamental for its own sake.</p>
+            </div>
+            <figure class="wide-plate">
+              <img src="assets/method-1.png" alt="Wide collage showing orchestration and systems thinking">
+            </figure>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="capabilities">
+        <div class="section-label"><span data-i18n="capabilities.label">III - Capabilities</span></div>
+        <div class="cap-grid">
+          <article class="cap-card" data-reveal>
+            <span class="num">01</span>
+            <small data-i18n="cap.1.tag">Orchestration</small>
+            <h3 data-i18n="cap.1.title">Design the loop before writing the prompt</h3>
+            <p data-i18n="cap.1.body">Task decomposition, tool routing, memory boundaries, recovery states, and handoff points that make agent behavior reviewable.</p>
+          </article>
+          <article class="cap-card" data-reveal style="--delay: 150ms">
+            <span class="num">02</span>
+            <small data-i18n="cap.2.tag">Evaluation</small>
+            <h3 data-i18n="cap.2.title">Turn vague quality into repeatable checks</h3>
+            <p data-i18n="cap.2.body">Golden tasks, failure taxonomies, scorecards, trace review, and regression gates for systems that change every week.</p>
+          </article>
+          <article class="cap-card" data-reveal style="--delay: 300ms">
+            <span class="num">03</span>
+            <small data-i18n="cap.3.tag">Product systems</small>
+            <h3 data-i18n="cap.3.title">Make AI workflows feel like software</h3>
+            <p data-i18n="cap.3.body">Interfaces for approvals, diffs, retries, review queues, and stateful collaboration between people and model-driven workers.</p>
+          </article>
+          <article class="cap-card" data-reveal style="--delay: 450ms">
+            <span class="num">04</span>
+            <small data-i18n="cap.4.tag">Shipping</small>
+            <h3 data-i18n="cap.4.title">Collapse prototype energy into production habit</h3>
+            <p data-i18n="cap.4.body">Small delivery slices, instrumentation, fallback paths, and documentation that lets the system survive real usage.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section" id="labs">
+        <div class="section-label"><span data-i18n="labs.label">IV - Labs</span></div>
+        <div class="labs-layout">
+          <aside class="filter-rail" data-reveal>
+            <p class="kicker" data-i18n="labs.kicker">Current fragments</p>
+            <h2 class="lead" data-i18n="labs.heading">A working notebook of agent patterns, interface mechanics, and evaluation habits.</h2>
+            <div class="filter-pills" aria-label="Lab filters">
+              <button class="is-active" type="button" data-filter="all" data-i18n="labs.filterAll">All</button>
+              <button type="button" data-filter="agents" data-i18n="labs.filterAgents">Agents</button>
+              <button type="button" data-filter="evals" data-i18n="labs.filterEvals">Evals</button>
+              <button type="button" data-filter="interface" data-i18n="labs.filterInterface">Interface</button>
+            </div>
+            <div class="progress" aria-label="Selected focus progress"><span></span></div>
+          </aside>
+
+          <div class="lab-list">
+            <article class="lab-card" data-kind="agents" data-reveal>
+              <img src="assets/lab-1.png" alt="Collage plate for task graphs">
+              <div>
+                <p class="kicker" data-i18n="lab.1.kicker">Agents</p>
+                <h3 data-i18n="lab.1.title">Task graphs that explain themselves</h3>
+                <p data-i18n="lab.1.body">Designing agent plans as visible structures, so a reviewer can understand what will happen before a tool is called.</p>
+              </div>
+              <span class="arrow" aria-hidden="true">+</span>
+            </article>
+            <article class="lab-card" data-kind="evals" data-reveal style="--delay: 100ms">
+              <img src="assets/lab-2.png" alt="Collage plate for evaluation work">
+              <div>
+                <p class="kicker" data-i18n="lab.2.kicker">Evals</p>
+                <h3 data-i18n="lab.2.title">Failure libraries, not success theater</h3>
+                <p data-i18n="lab.2.body">Collecting bad traces, edge cases, and uncomfortable examples as the highest-signal material in the system.</p>
+              </div>
+              <span class="arrow" aria-hidden="true">+</span>
+            </article>
+            <article class="lab-card" data-kind="interface" data-reveal style="--delay: 200ms">
+              <img src="assets/lab-3.png" alt="Collage plate for interface patterns">
+              <div>
+                <p class="kicker" data-i18n="lab.3.kicker">Interface</p>
+                <h3 data-i18n="lab.3.title">Review queues for synthetic labor</h3>
+                <p data-i18n="lab.3.body">Making approvals, deltas, provenance, and confidence visible enough that humans can intervene without slowing everything down.</p>
+              </div>
+              <span class="arrow" aria-hidden="true">+</span>
+            </article>
+            <article class="lab-card" data-kind="agents" data-reveal style="--delay: 300ms">
+              <img src="assets/lab-4.png" alt="Collage plate for memory and handoffs">
+              <div>
+                <p class="kicker" data-i18n="lab.4.kicker">Agents</p>
+                <h3 data-i18n="lab.4.title">Memory with expiration dates</h3>
+                <p data-i18n="lab.4.body">Keeping agent context useful by making retention, scope, and deletion part of the product contract.</p>
+              </div>
+              <span class="arrow" aria-hidden="true">+</span>
+            </article>
+            <article class="lab-card" data-kind="evals" data-reveal style="--delay: 400ms">
+              <img src="assets/lab-5.png" alt="Collage plate for verification systems">
+              <div>
+                <p class="kicker" data-i18n="lab.5.kicker">Evals</p>
+                <h3 data-i18n="lab.5.title">Regression tests for judgment calls</h3>
+                <p data-i18n="lab.5.body">Pairing automated checks with reviewer rubrics, so subjective quality can still improve over time.</p>
+              </div>
+              <span class="arrow" aria-hidden="true">+</span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="method">
+        <div class="section-label"><span data-i18n="method.label">V - Method</span></div>
+        <div class="method-grid">
+          <article class="method-step" data-reveal>
+            <img src="assets/method-1.png" alt="Method collage for mapping a workflow">
+            <p class="kicker" data-i18n="method.1.kicker">Step 01</p>
+            <h3 data-i18n="method.1.title">Map the human workflow</h3>
+            <p data-i18n="method.1.body">Start from the current judgment process, not from the model feature list.</p>
+          </article>
+          <article class="method-step" data-reveal style="--delay: 150ms">
+            <img src="assets/method-2.png" alt="Method collage for designing agent actions">
+            <p class="kicker" data-i18n="method.2.kicker">Step 02</p>
+            <h3 data-i18n="method.2.title">Shape the agent contract</h3>
+            <p data-i18n="method.2.body">Define permissions, tools, stop conditions, and what the user must be able to inspect.</p>
+          </article>
+          <article class="method-step" data-reveal style="--delay: 300ms">
+            <img src="assets/method-3.png" alt="Method collage for evaluation">
+            <p class="kicker" data-i18n="method.3.kicker">Step 03</p>
+            <h3 data-i18n="method.3.title">Build the evaluation loop</h3>
+            <p data-i18n="method.3.body">Capture representative tasks, trace failures, and turn reviewer judgment into repeatable criteria.</p>
+          </article>
+          <article class="method-step" data-reveal style="--delay: 450ms">
+            <img src="assets/method-4.png" alt="Method collage for shipping">
+            <p class="kicker" data-i18n="method.4.kicker">Step 04</p>
+            <h3 data-i18n="method.4.title">Ship with escape hatches</h3>
+            <p data-i18n="method.4.body">Expose retries, manual override, provenance, and graceful degradation from the first real version.</p>
+          </article>
+        </div>
+      </section>
+
+      <section class="section dark-slab" id="work">
+        <div class="section-label"><span data-i18n="work.label">VI - Selected Work</span></div>
+        <div class="work-header" data-reveal>
+          <h2 class="display dot" data-i18n-html="work.headline">Selected <em>systems</em></h2>
+          <p class="body-copy" data-i18n="work.intro">Featured production systems and open-source intelligence architectures developed by Joseph.</p>
+        </div>
+
+        <div class="work-grid">
+          <a class="work-card" href="https://github.com/KkOma-value/spec-dev-skill" target="_blank" rel="noopener noreferrer" aria-label="spec-dev project on GitHub" data-reveal>
+            <img src="assets/work-1.png" alt="spec-dev - AI agent runner and governor">
+            <div>
+              <p class="kicker" data-i18n="work.1.kicker">AI Agent Runner & Lifecycle Governor</p>
+              <h3 data-i18n="work.1.title">spec-dev</h3>
+              <p data-i18n="work.1.body">A zero-dependency execution engine and lifecycle governor for Codex and Claude Code, driving agent delivery loops with hard gates.</p>
+            </div>
+          </a>
+          <a class="work-card" href="https://github.com/KkOma-value/Lovemaster" target="_blank" rel="noopener noreferrer" aria-label="Lovemaster project on GitHub" data-reveal style="--delay: 150ms">
+            <img src="assets/work-2.png" alt="Lovemaster - AI relationship coach">
+            <div>
+              <p class="kicker" data-i18n="work.2.kicker">AI-Powered Relationship & Communication Coach</p>
+              <h3 data-i18n="work.2.title">Love Master</h3>
+              <p data-i18n="work.2.body">A full-stack multi-modal relationship assistant built with Java (Spring AI, Spring Boot) and React. Integrates screenshot OCR analysis, PgVector RAG knowledge retrieval, and MCP tools.</p>
+            </div>
+          </a>
+          <a class="work-card" href="https://github.com/KkOma-value/vault" target="_blank" rel="noopener noreferrer" aria-label="Knowledge Vault project on GitHub" data-reveal style="--delay: 300ms">
+            <img src="assets/lab-1.png" alt="Knowledge Vault - AI personal wiki">
+            <div>
+              <p class="kicker" data-i18n="work.3.kicker">AI-Assisted Personal Knowledge System</p>
+              <h3 data-i18n="work.3.title">Knowledge Vault</h3>
+              <p data-i18n="work.3.body">A structured personal wiki repository featuring raw source ingestion, taxonomy organization, and automated LLM compilation via PowerShell workflows.</p>
+            </div>
+          </a>
+        </div>
+      </section>
+
+      <section class="section">
+        <div class="section-label"><span data-i18n="testimonial.label">VII - Testimonial</span></div>
+        <div class="quote-layout">
+          <figure class="quote-plate" data-reveal>
+            <img src="assets/testimonial.png" alt="Editorial testimonial collage">
+          </figure>
+          <div data-reveal style="--delay: 150ms">
+            <blockquote data-i18n="testimonial.quote">Engineering taste is the difference between a clever demo and a system someone can trust twice.</blockquote>
+            <div class="glyphs" aria-label="Partner glyph placeholders">
+              <span data-reveal style="--delay: 300ms">J</span>
+              <span data-reveal style="--delay: 350ms">A</span>
+              <span data-reveal style="--delay: 400ms">I</span>
+              <span data-reveal style="--delay: 450ms">O</span>
+              <span data-reveal style="--delay: 500ms">V</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="contact">
+        <div class="section-label"><span data-i18n="contact.label">VIII - Contact</span></div>
+        <div class="cta">
+          <div class="cta-panel" data-reveal>
+            <div>
+              <p class="kicker" data-i18n="contact.kicker">Availability</p>
+              <h2 class="display dot" data-i18n="contact.headline">Build the loop before the lore</h2>
+            </div>
+            <p class="lead" data-i18n="contact.lead">For agentic product systems, evaluation design, workflow automation, and AI interfaces that need to move from prototype to practice.</p>
+            <div class="contact-row">
+              <a class="contact-pill" href="https://github.com/KkOma-value" target="_blank" rel="noopener noreferrer" aria-label="Joseph's GitHub">
+                <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M12 2C6.477 2 2 6.477 2 12c0 4.42 2.865 8.17 6.839 9.49.5.092.682-.217.682-.482 0-.237-.009-.866-.013-1.7-2.782.604-3.369-1.34-3.369-1.34-.454-1.156-1.11-1.464-1.11-1.464-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.831.092-.646.35-1.086.636-1.337-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.578 9.578 0 0 1 12 6.836a9.59 9.59 0 0 1 2.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.167 22 16.418 22 12c0-5.523-4.477-10-10-10z"/></svg>
+                <span data-i18n="contact.github">GitHub / KkOma-value</span>
+              </a>
+            </div>
+          </div>
+          <figure class="cta-image" data-reveal style="--delay: 150ms">
+            <img src="assets/cta.png" alt="Final editorial collage for contact section">
+          </figure>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer" aria-label="Footer">
+      <div class="footer-grid">
+        <div>
+          <h4 data-i18n="footer.brand">Joseph</h4>
+          <p data-i18n="footer.brandDesc">Agentic Engineer focused on reliable AI workflows, evaluation loops, and human-centered automation.</p>
+        </div>
+        <div>
+          <h4 data-i18n="footer.practiceTitle">Practice</h4>
+          <a href="#capabilities" data-i18n="footer.practice1">Agent orchestration</a>
+          <a href="#labs" data-i18n="footer.practice2">Evaluation systems</a>
+          <a href="#method" data-i18n="footer.practice3">Product workflows</a>
+        </div>
+        <div>
+          <h4 data-i18n="footer.pagesTitle">Pages</h4>
+          <a href="#about" data-i18n="footer.pages1">About</a>
+          <a href="#work" data-i18n="footer.pages2">Selected work</a>
+          <a href="#contact" data-i18n="footer.pages3">Contact</a>
+        </div>
+        <div>
+          <h4 data-i18n="footer.notesTitle">Notes</h4>
+          <p data-i18n="footer.notes1">Reliable loops over one-off demos.</p>
+          <p data-i18n="footer.notes2">Human review stays visible.</p>
+        </div>
+      </div>
+      <p class="mega dot">Joseph</p>
+    </footer>
+  </div>
+
+  <script>
+    const nav = document.querySelector(".nav");
+    const revealItems = document.querySelectorAll("[data-reveal]");
+    const filterButtons = document.querySelectorAll("[data-filter]");
+    const labCards = document.querySelectorAll(".lab-card");
+
+    const onScroll = () => {
+      nav.classList.toggle("is-compact", window.scrollY > 80);
+    };
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    onScroll();
+
+    if ("IntersectionObserver" in window) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("is-visible");
+          } else {
+            entry.target.classList.remove("is-visible");
+          }
+        });
+      }, { threshold: 0.1, rootMargin: "0px 0px -5% 0px" });
+
+      revealItems.forEach((item) => observer.observe(item));
+    } else {
+      revealItems.forEach((item) => item.classList.add("is-visible"));
+    }
+
+    filterButtons.forEach((button) => {
+      button.addEventListener("click", () => {
+        const selected = button.dataset.filter;
+        filterButtons.forEach((item) => item.classList.toggle("is-active", item === button));
+        labCards.forEach((card) => {
+          const visible = selected === "all" || card.dataset.kind === selected;
+          card.style.display = visible ? "grid" : "none";
+        });
+      });
+    });
+
+        const translations = {
+      en: {
+        "issue.left": "Personal Folio / Vol. I",
+        "issue.center": "Joseph - Agentic Engineer",
+        "issue.right": "Systems, evaluation, orchestration",
+        "nav.about": "About",
+        "nav.capabilities": "Capabilities",
+        "nav.labs": "Labs",
+        "nav.work": "Work",
+        "nav.contact": "Contact",
+        "nav.cta": "Start a brief",
+        "hero.label": "I - Overture",
+        "hero.role": "Agentic Engineer",
+        "hero.pill1": "Human-in-the-loop automation",
+        "hero.pill2": "Evaluation-led systems",
+        "hero.headline": "Joseph designs and runs <em>agentic systems</em> that you can trust like stable software",
+        "hero.ring1Strong": "Plan",
+        "hero.ring1Text": "task graphs",
+        "hero.ring2Strong": "Act",
+        "hero.ring2Text": "tool use",
+        "hero.ring3Strong": "Verify",
+        "hero.ring3Text": "eval loops",
+        "hero.lead": "A personal index of work at the intersection of product logic, LLM tool routing, and automated test loops.",
+        "hero.idx1Label": "Product agents",
+        "hero.idx1Tag": "plan",
+        "hero.idx2Label": "Workflow orchestration",
+        "hero.idx2Tag": "act",
+        "hero.idx3Label": "Evaluation harnesses",
+        "hero.idx3Tag": "verify",
+        "hero.idx4Label": "Editorial engineering",
+        "hero.idx4Tag": "ship",
+        "hero.caption": "Rococo machinery / autonomous systems / personal edition",
+        "about.label": "II - About",
+        "about.kicker": "Atelier Zero personal edition",
+        "about.pull": "An AI agent is only useful when you can inspect its traces, override its decisions, and rely on its outcomes.",
+        "about.body1": "I focus on the practical layer of AI: handling tools, managing state memory, and designing interfaces that let people stay in control. Rather than making a model sound clever, my goal is to make automated workflows completely readable and predictable.",
+        "about.body2": "This site treats engineering like an editorial piece—featuring crisp type, collage art, and low-key gears and paths. It is not ornament for its own sake, but a visual mirror of how I build systems.",
+        "capabilities.label": "III - Focus",
+        "cap.1.tag": "Orchestration",
+        "cap.1.title": "Design the execution loop before writing the prompt",
+        "cap.1.body": "Task graphs, tool state routing, memory isolation, and clear escalation points that keep agent runs predictable.",
+        "cap.2.tag": "Evaluation",
+        "cap.2.title": "Replace qualitative vibes with quantitative evals",
+        "cap.2.body": "Golden test suites, error taxonomy logging, trace instrumentation, and regression blocks to keep up with weekly model shifts.",
+        "cap.3.tag": "Product systems",
+        "cap.3.title": "Turn black-box prompts into stateful software",
+        "cap.3.body": "Stateful diff review, single-step approvals, and structured human-agent handoff queues.",
+        "cap.4.tag": "Shipping",
+        "cap.4.title": "Move past the hackathon demo to production habits",
+        "cap.4.body": "Strict telemetry tracking, fallback execution states, and minimal, robust deployment slices.",
+        "labs.label": "IV - Labs",
+        "labs.kicker": "Live fragments",
+        "labs.heading": "A log of live agent patterns, interface experiments, and evaluation setups I use daily.",
+        "labs.filterAll": "All",
+        "labs.filterAgents": "Agents",
+        "labs.filterEvals": "Evals",
+        "labs.filterInterface": "Interface",
+        "lab.1.kicker": "Agents",
+        "lab.1.title": "Task graphs that explain themselves",
+        "lab.1.body": "Designing agent plans as visible structures, so a reviewer can understand what will happen before a tool is called.",
+        "lab.2.kicker": "Evals",
+        "lab.2.title": "Failure libraries, not success theater",
+        "lab.2.body": "Collecting bad traces, edge cases, and uncomfortable examples as the highest-signal material in the system.",
+        "lab.3.kicker": "Interface",
+        "lab.3.title": "Review queues for synthetic labor",
+        "lab.3.body": "Making approvals, deltas, provenance, and confidence visible enough that humans can intervene without slowing everything down.",
+        "lab.4.kicker": "Agents",
+        "lab.4.title": "Memory with expiration dates",
+        "lab.4.body": "Keeping agent context useful by making retention, scope, and deletion part of the product contract.",
+        "lab.5.kicker": "Evals",
+        "lab.5.title": "Regression tests for judgment calls",
+        "lab.5.body": "Pairing automated checks with reviewer rubrics, so subjective quality can still improve over time.",
+        "method.label": "V - Method",
+        "method.1.kicker": "Step 01",
+        "method.1.title": "Map the human workflow",
+        "method.1.body": "Start from the current judgment process, not from the model feature list.",
+        "method.2.kicker": "Step 02",
+        "method.2.title": "Shape the agent contract",
+        "method.2.body": "Define permissions, tools, stop conditions, and what the user must be able to inspect.",
+        "method.3.kicker": "Step 03",
+        "method.3.title": "Build the evaluation loop",
+        "method.3.body": "Capture representative tasks, trace failures, and turn reviewer judgment into repeatable criteria.",
+        "method.4.kicker": "Step 04",
+        "method.4.title": "Ship with escape hatches",
+        "method.4.body": "Expose retries, manual override, provenance, and graceful degradation from the first real version.",
+        "work.label": "VI - Selected Work",
+        "work.headline": "Selected <em>systems</em>",
+        "work.intro": "Featured production systems and open-source intelligence architectures developed by Joseph.",
+        "work.1.kicker": "AI Agent Runner & Lifecycle Governor",
+        "work.1.title": "spec-dev",
+        "work.1.body": "A zero-dependency execution engine and lifecycle governor for Codex and Claude Code, driving agent delivery loops with hard gates.",
+        "work.2.kicker": "AI-Powered Relationship & Communication Coach",
+        "work.2.title": "Love Master",
+        "work.2.body": "A full-stack multi-modal relationship assistant built with Java (Spring AI, Spring Boot) and React. Integrates screenshot OCR analysis, PgVector RAG knowledge retrieval, and MCP tools.",
+        "work.3.kicker": "AI-Assisted Personal Knowledge System",
+        "work.3.title": "Knowledge Vault",
+        "work.3.body": "A structured personal wiki repository featuring raw source ingestion, taxonomy organization, and automated LLM compilation via PowerShell workflows.",
+        "testimonial.label": "VII - Testimonial",
+        "testimonial.quote": "Engineering taste is the difference between a clever demo and a system someone can trust twice.",
+        "contact.label": "VIII - Contact",
+        "contact.kicker": "Availability",
+        "contact.headline": "Build the loop before the lore",
+        "contact.lead": "For agentic product systems, evaluation design, workflow automation, and AI interfaces that need to move from prototype to practice.",
+        "contact.github": "GitHub / KkOma-value",
+        "footer.brand": "Joseph",
+        "footer.brandDesc": "Agentic Engineer focused on reliable AI workflows, evaluation loops, and human-centered automation.",
+        "footer.practiceTitle": "Practice",
+        "footer.practice1": "Agent orchestration",
+        "footer.practice2": "Evaluation systems",
+        "footer.practice3": "Product workflows",
+        "footer.pagesTitle": "Pages",
+        "footer.pages1": "About",
+        "footer.pages2": "Selected work",
+        "footer.pages3": "Contact",
+        "footer.notesTitle": "Notes",
+        "footer.notes1": "Reliable loops over one-off demos.",
+        "footer.notes2": "Human review stays visible."
+      },
+      zh: {
+        "issue.left": "个人作品集 / 第一卷",
+        "issue.center": "Joseph - 智能体工程师",
+        "issue.right": "系统、评估、编排",
+        "nav.about": "关于",
+        "nav.capabilities": "能力",
+        "nav.labs": "实验室",
+        "nav.work": "作品",
+        "nav.contact": "联系",
+        "nav.cta": "发起合作",
+        "hero.label": "I - 序曲",
+        "hero.role": "智能体工程师",
+        "hero.pill1": "人机协同自动化",
+        "hero.pill2": "评估驱动系统",
+        "hero.headline": "Joseph 构建<em>像可靠软件一样运行的智能体系统</em>",
+        "hero.ring1Strong": "规划",
+        "hero.ring1Text": "任务图",
+        "hero.ring2Strong": "执行",
+        "hero.ring2Text": "工具调用",
+        "hero.ring3Strong": "验证",
+        "hero.ring3Text": "评估循环",
+        "hero.lead": "在产品设计、AI 编排和工程落地之间，探索能跑通、可信任的自动化工作流。",
+        "hero.idx1Label": "产品智能体",
+        "hero.idx1Tag": "规划",
+        "hero.idx2Label": "工作流编排",
+        "hero.idx2Tag": "执行",
+        "hero.idx3Label": "评估框架",
+        "hero.idx3Tag": "验证",
+        "hero.idx4Label": "编辑式工程",
+        "hero.idx4Tag": "交付",
+        "hero.caption": "洛可可机械 / 自主系统 / 个人版本",
+        "about.label": "II - 关于",
+        "about.kicker": "Atelier Zero 个人版本",
+        "about.pull": "一个智能体只有在它的循环可被检查、修正和信任时，才真正有用。",
+        "about.body1": "我专注于 AI 系统的实践层：工具、记忆、交接、验证，以及让人类保持掌控的产品界面。与其追求虚无的智能感，我更在乎如何让自动化链路可追溯、可干预、可复现。",
+        "about.body2": "主页设计融入了这种工程哲学：利落的排版、考究的拼贴配图，以及低调的齿轮与决策路径元素。这不仅仅是装饰，更是工程逻辑与设计的平衡。",
+        "capabilities.label": "III - 核心方向",
+        "cap.1.tag": "编排",
+        "cap.1.title": "提示词是次要的，更重要的是设计闭环",
+        "cap.1.body": "框好智能体的权限边界、可用工具和停机条件，必须要有人工审核节点。",
+        "cap.2.tag": "评估",
+        "cap.2.title": "告别玄学，用确定性的规则做质量回归",
+        "cap.2.body": "整理黄金任务集，记录失败分类，在系统每周迭代时进行强有力的质量门禁。",
+        "cap.3.tag": "产品系统",
+        "cap.3.title": "把黑盒的 AI 生成变成有状态的协作工具",
+        "cap.3.body": "设计人机互动的审批、差异对比和重试队列，实现有状态的协作。",
+        "cap.4.tag": "交付",
+        "cap.4.title": "拒绝快餐式的 Demo，用工程标准打磨生产级系统",
+        "cap.4.body": "加入详细的可观测性埋点、回退路径，以保障系统能承受真实流量。",
+        "labs.label": "IV - 实验室",
+        "labs.kicker": "手稿片段",
+        "labs.heading": "记录我在日常开发中使用的智能体模式、界面交互和评估框架。",
+        "labs.filterAll": "全部",
+        "labs.filterAgents": "智能体",
+        "labs.filterEvals": "评估",
+        "labs.filterInterface": "界面",
+        "lab.1.kicker": "智能体",
+        "lab.1.title": "能自我解释的任务图",
+        "lab.1.body": "将智能体计划设计为可见结构，让审查者在工具被调用之前就能理解将会发生什么。",
+        "lab.2.kicker": "评估",
+        "lab.2.title": "失败案例库，而非成功秀场",
+        "lab.2.body": "收集错误轨迹、边缘案例和令人不适的示例，将其作为系统中信号最强的素材。",
+        "lab.3.kicker": "界面",
+        "lab.3.title": "合成劳动的审核队列",
+        "lab.3.body": "让审批、差异、来源和置信度足够可见，使人类能够在不拖慢一切的情况下进行干预。",
+        "lab.4.kicker": "智能体",
+        "lab.4.title": "带有过期日期的记忆",
+        "lab.4.body": "通过将保留期限、范围和删除策略纳入产品契约，保持智能体上下文的有用性。",
+        "lab.5.kicker": "评估",
+        "lab.5.title": "针对判断性决策的回归测试",
+        "lab.5.body": "将自动化检查与审查者评分标准配对，使主观质量仍能随时间持续改善。",
+        "method.label": "V - 方法",
+        "method.1.kicker": "步骤 01",
+        "method.1.title": "拆解原本的工作路径",
+        "method.1.body": "先看人是怎么判断和操作的，而不是看模型能用什么花哨的 API。",
+        "method.2.kicker": "步骤 02",
+        "method.2.title": "拟定好智能体的规则契约",
+        "method.2.body": "限定好智能体的权限边界、可用工具和停机条件，必须要有人工审核节点。",
+        "method.3.kicker": "步骤 03",
+        "method.3.title": "搭好质量评估环",
+        "method.3.body": "收集典型失败 case，并把人工评审的直觉沉淀为自动化回归脚本。",
+        "method.4.kicker": "步骤 04",
+        "method.4.title": "交付必须留出逃生舱",
+        "method.4.body": "从第一天起就加上一键回退、手动覆盖和降级运行机制，防止模型抽风跑偏。",
+        "work.label": "VI - 精选作品",
+        "work.headline": "精选<em>系统</em>",
+        "work.intro": "由 Joseph 开发的特色生产系统与开源智能架构。",
+        "work.1.kicker": "AI 智能体执行器与生命周期管理工具",
+        "work.1.title": "spec-dev",
+        "work.1.body": "零依赖的 AI 智能体执行引擎与生命周期管理工具。通过严格的流程门禁，驱动智能体完成从需求调研、规格定义到前端优先实现、质量检验的完整交付闭环。",
+        "work.2.kicker": "AI 恋爱沟通辅助与行动教练系统",
+        "work.2.title": "Love Master",
+        "work.2.body": "基于 Spring AI、React 和 PostgreSQL (PgVector) 构建的全栈恋爱沟通辅助与行动教练系统。支持聊天截图多模态分析、RAG 知识库检索以及 MCP 工具调用。",
+        "work.3.kicker": "AI 辅助个人知识库系统",
+        "work.3.title": "Knowledge Vault",
+        "work.3.body": "基于原始文档追溯与维基索引构建的个人知识系统。支持 PDF/Markdown 导入、AI 自动整理分类与领域目录生成，通过 PowerShell 工作流进行自动化管理。",
+        "testimonial.label": "VII - 推荐语",
+        "testimonial.quote": "工程品味是巧妙演示和一个人们能够反复信任的系统之间的区别。",
+        "contact.label": "VIII - 联系",
+        "contact.kicker": "可用性",
+        "contact.headline": "先建循环，再讲故事",
+        "contact.lead": "适用于智能体产品系统、评估设计、工作流自动化，以及需要从原型走向实践的 AI 界面。",
+        "contact.github": "GitHub / KkOma-value",
+        "footer.brand": "Joseph",
+        "footer.brandDesc": "专注于可靠 AI 工作流、评估循环和以人为中心的自动化的智能体工程师。",
+        "footer.practiceTitle": "实践领域",
+        "footer.practice1": "智能体编排",
+        "footer.practice2": "评估系统",
+        "footer.practice3": "产品工作流",
+        "footer.pagesTitle": "页面",
+        "footer.pages1": "关于",
+        "footer.pages2": "精选作品",
+        "footer.pages3": "联系",
+        "footer.notesTitle": "笔记",
+        "footer.notes1": "可靠的循环优于一次性演示。",
+        "footer.notes2": "人类审查始终可见。"
+      },
+      ja: {
+        "issue.left": "個人作品集 / Vol. I",
+        "issue.center": "Joseph - エージェントエンジニア",
+        "issue.right": "システム、評価、オーケストレーション",
+        "nav.about": "概要",
+        "nav.capabilities": "能力",
+        "nav.labs": "ラボ",
+        "nav.work": "作品",
+        "nav.contact": "連絡",
+        "nav.cta": "相談を始める",
+        "hero.label": "I - 序曲",
+        "hero.role": "エージェントエンジニア",
+        "hero.pill1": "人間介入型自動化",
+        "hero.pill2": "評価主导システム",
+        "hero.headline": "Josephは<em>説明責任を持つソフトウェアのように振る舞うエージェントシステム</em>を構築する",
+        "hero.ring1Strong": "計画",
+        "hero.ring1Text": "タスクグラフ",
+        "hero.ring2Strong": "実行",
+        "hero.ring2Text": "ツール使用",
+        "hero.ring3Strong": "検証",
+        "hero.ring3Text": "評価ループ",
+        "hero.lead": "プロダクト判断、AIオーケストレーション、そして信頼できる実行ループが交差する場所で働くエンジニアの個人ページ。",
+        "hero.idx1Label": "プロダクトエージェント",
+        "hero.idx1Tag": "計画",
+        "hero.idx2Label": "ワークフロー編成",
+        "hero.idx2Tag": "実行",
+        "hero.idx3Label": "評価基盤",
+        "hero.idx3Tag": "検証",
+        "hero.idx4Label": "編集エンジニアリング",
+        "hero.idx4Tag": "納品",
+        "hero.caption": "ロココ機械 / 自律システム / 個人版",
+        "about.label": "II - 概要",
+        "about.kicker": "Atelier Zero 個人版",
+        "about.pull": "エージェントが真に実用的なのは、その動作ループを検証し、修正し、確信を持って運用できる時だけだ。",
+        "about.body1": "JosephはAIシステムの実践層——ツール、記憶、引き継ぎ、検証、性能追跡——に注力しています。プロンプトを洗練させること以上に、自動化プロセスを追跡可能かつ完全に制御可能にすることを重視しています。",
+        "about.body2": "このホームページは、そのエンジニアリング姿勢を反映しています：精密なタイポグラフィ、コラージュ画像、精度高く配置されたギアや意思決定の導線。単なる装饰ではなく、システムの可視性を視覚的に表現したものです。",
+        "capabilities.label": "III - コア領域",
+        "cap.1.tag": "オーケストレーション",
+        "cap.1.title": "プロンプトに頼る前に、まず実行ループを設計する",
+        "cap.1.body": "タスク構造、ツールのルーティング、記憶のスコープ、回復状態を定義し、エージェントの予測可能性を確保します。",
+        "cap.2.tag": "評価",
+        "cap.2.title": "定性的な『品質の評価』を、再現可能なテストスイートに置き換える",
+        "cap.2.body": "ゴールデンテスト、エラー分類、トレース分析を導入し、毎週のアップデートに耐えうる回帰テストを構築します。",
+        "cap.3.tag": "プロダクトシステム",
+        "cap.3.title": "AIによる生成を、状態管理されたコラボレーションツールに変える",
+        "cap.3.body": "人間とエージェントの協働のための、承認フロー、差分レビュー、リトライキューを構築します。",
+        "cap.4.tag": "出荷",
+        "cap.4.title": "使い捨てのデモではなく、運用に耐えうる本番環境の基準を作る",
+        "cap.4.body": "テレメトリ監視、例外処理、フォールバックルートを実装し、実トラフィックで稼働するシステムを届けます。",
+        "labs.label": "IV - ラボ",
+        "labs.kicker": "開発ノート",
+        "labs.heading": "日常の開発で活用しているエージェント構造、UIパターン、評価フレームのログ。",
+        "labs.filterAll": "すべて",
+        "labs.filterAgents": "エージェント",
+        "labs.filterEvals": "評価",
+        "labs.filterInterface": "インターフェース",
+        "lab.1.kicker": "エージェント",
+        "lab.1.title": "自己説明するタスクグラフ",
+        "lab.1.body": "エージェントの計画を可視的な構造として設計し、レビュアーがツール呼び出し前に何が起こるかを理解できるようにする。",
+        "lab.2.kicker": "評価",
+        "lab.2.title": "失敗ライブラリ、成功劇場ではなく",
+        "lab.2.body": "悪いトレース、エッジケース、不快な例を、システムで最もシグナルの高い素材として収集する。",
+        "lab.3.kicker": "インターフェース",
+        "lab.3.title": "合成労働のレビューキュー",
+        "lab.3.body": "承認、デルタ、出所、信頼度を十分に可視化し、人間が全体を遅らせることなく介入できるようにする。",
+        "lab.4.kicker": "エージェント",
+        "lab.4.title": "有効期限付きの記憶",
+        "lab.4.body": "保持期間、スコープ、削除をプロダクト契約の一部にすることで、エージェントのコンテキストを有用に保つ。",
+        "lab.5.kicker": "評価",
+        "lab.5.title": "判断的決定のための回帰テスト",
+        "lab.5.body": "自動チェックとレビュアーのルーブリックを組み合わせ、主観的な品質も時間とともに改善できるようにする。",
+        "method.label": "V - メソッド",
+        "method.1.kicker": "ステップ 01",
+        "method.1.title": "人間の業務プロセスを紐解く",
+        "method.1.body": "モデルの機能一覧から考えるのではなく、人間がどう判断し動いているかを基点にします。",
+        "method.2.kicker": "ステップ 02",
+        "method.2.title": "エージェントの動作権限を定義する",
+        "method.2.body": "アクセス制限、使用ツール、停止トリガーを定め、人間がチェックできる介在点を設けます。",
+        "method.3.kicker": "ステップ 03",
+        "method.3.title": "評価と改善のループを回す",
+        "method.3.body": "代表的なエッジケースを特定し、エラー追跡を行い、人間の直感を機械的なテスト基準に落とし込みます。",
+        "method.4.kicker": "ステップ 04",
+        "method.4.title": "必ず『非常口』を用意してリリースする",
+        "method.4.body": "初期リリースから、リトライ、手動補正、ログ追跡、縮退運転ができる仕組みを必ず組み込みます。",
+        "work.label": "VI - 厳選作品",
+        "work.headline": "厳選<em>システム</em>",
+        "work.intro": "Josephが開発した、本番環境向けのシステムおよびオープンソースのインテリジェンス・アーキテクチャ。",
+        "work.1.kicker": "AIエージェントランナー＆ライフサイクルガバナー",
+        "work.1.title": "spec-dev",
+        "work.1.body": "CodexやClaude Codeのためのゼロ依存型AIエージェント実行エンジン。厳格なライフサイクル管理により、要件定義からフロントエンド実装、品質検査までのデリバリーループを駆動します。",
+        "work.2.kicker": "AI恋愛・コミュニケーションコーチ",
+        "work.2.title": "Love Master",
+        "work.2.body": "Spring AI、React、PgVectorを採用したフルスタックの恋愛コミュニケーション支援プラットフォーム。スクリーンショット解析、RAG知識検索、MCPツールの呼び出しに対応。",
+        "work.3.kicker": "AI支援型パーソナルナレッジシステム",
+        "work.3.title": "Knowledge Vault",
+        "work.3.body": "PowerShellとLLMを組み合わせた個人向けナレッジベースシステム。PDFなどの未整理ドキュメントを分類し、Wiki形式の領域インデックスとLLMによるアウトプットを自動生成します。",
+        "testimonial.label": "VII - 推薦文",
+        "testimonial.quote": "エンジニアリングの審美眼こそが、巧妙なデモと二度信頼できるシステムの違いを生む。",
+        "contact.label": "VIII - 連絡",
+        "contact.kicker": "対応可能",
+        "contact.headline": "伝説の前に、ループを構築する",
+        "contact.lead": "エージェント型プロダクトシステム、評価設計、ワークフロー自动化、エンドユーザーインターフェースの実装に。",
+        "contact.github": "GitHub / KkOma-value",
+        "footer.brand": "Joseph",
+        "footer.brandDesc": "信頼性のあるAIワークフロー、評価ループ、人間中心の自動化に注力するエージェントエンジニア。",
+        "footer.practiceTitle": "プラクティス",
+        "footer.practice1": "エージェントオーケストレーション",
+        "footer.practice2": "評価システム",
+        "footer.practice3": "プロダクトワークフロー",
+        "footer.pagesTitle": "ページ",
+        "footer.pages1": "概要",
+        "footer.pages2": "厳選作品",
+        "footer.pages3": "連絡",
+        "footer.notesTitle": "ノート",
+        "footer.notes1": "一回限りのデモより、信頼できるループを。",
+        "footer.notes2": "人間のレビューは常に可視化される。"
+      }
+    };
+
+
+    const langSwitch = document.getElementById("lang-switch");
+    const langTrigger = document.getElementById("lang-trigger");
+    const langCurrent = langTrigger ? langTrigger.querySelector(".lang-current") : null;
+    const langDropdown = document.getElementById("lang-dropdown");
+    const langOptions = langDropdown ? langDropdown.querySelectorAll(".lang-option") : [];
+
+    const langLabels = {
+      en: "EN",
+      zh: "中文",
+      ja: "日本語"
+    };
+
+    const setLang = (lang) => {
+      const dict = translations[lang];
+      if (!dict) return;
+      document.documentElement.lang = lang;
+      document.querySelectorAll("[data-i18n]").forEach((el) => {
+        const key = el.dataset.i18n;
+        if (dict[key] !== undefined) el.textContent = dict[key];
+      });
+      document.querySelectorAll("[data-i18n-html]").forEach((el) => {
+        const key = el.dataset.i18nHtml;
+        if (dict[key] !== undefined) el.innerHTML = dict[key];
+      });
+      
+      // Update custom dropdown UI
+      if (langCurrent) {
+        langCurrent.textContent = langLabels[lang] || lang.toUpperCase();
+      }
+      langOptions.forEach(opt => {
+        if (opt.dataset.value === lang) {
+          opt.classList.add("is-active");
+        } else {
+          opt.classList.remove("is-active");
+        }
+      });
+
+      try {
+        localStorage.setItem("joseph-lang", lang);
+      } catch {}
+    };
+
+    // Toggle dropdown
+    if (langTrigger && langSwitch) {
+      langTrigger.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const isOpen = langSwitch.classList.toggle("is-open");
+        langTrigger.setAttribute("aria-expanded", isOpen);
+      });
+    }
+
+    // Select options
+    langOptions.forEach(opt => {
+      opt.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const lang = opt.dataset.value;
+        setLang(lang);
+        if (langSwitch) langSwitch.classList.remove("is-open");
+        if (langTrigger) langTrigger.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    // Close on outside click
+    document.addEventListener("click", () => {
+      if (langSwitch && langSwitch.classList.contains("is-open")) {
+        langSwitch.classList.remove("is-open");
+        if (langTrigger) langTrigger.setAttribute("aria-expanded", "false");
+      }
+    });
+
+    // Init
+    try {
+      const saved = localStorage.getItem("joseph-lang");
+      if (saved && translations[saved]) {
+        setLang(saved);
+      } else {
+        setLang("en");
+      }
+    } catch {
+      setLang("en");
+    }
+
+    // --- Interactive ImageTrail (Variant 5) ---
+    function lerp(a, b, n) {
+      return (1 - n) * a + n * b;
+    }
+
+    function getLocalPointerPos(e) {
+      let clientX = 0, clientY = 0;
+      if (e.touches && e.touches.length > 0) {
+        clientX = e.touches[0].clientX;
+        clientY = e.touches[0].clientY;
+      } else {
+        clientX = e.clientX;
+        clientY = e.clientY;
+      }
+      return {
+        x: clientX + window.scrollX,
+        y: clientY + window.scrollY
+      };
+    }
+
+    function getMouseDistance(p1, p2) {
+      const dx = p1.x - p2.x;
+      const dy = p1.y - p2.y;
+      return Math.hypot(dx, dy);
+    }
+
+    class ImageItem {
+      constructor(el) {
+        this.DOM = { el: el };
+        this.DOM.inner = el.querySelector('.content__img-inner');
+        this.defaultStyle = { scale: 1, x: 0, y: 0, opacity: 0 };
+        this.rect = null;
+        this.getRect();
+        this.initEvents();
+      }
+      initEvents() {
+        this.resize = () => {
+          gsap.set(this.DOM.el, this.defaultStyle);
+          this.getRect();
+        };
+        window.addEventListener('resize', this.resize);
+      }
+      getRect() {
+        this.rect = this.DOM.el.getBoundingClientRect();
+      }
+    }
+
+    class ImageTrail {
+      constructor(container, trailContainer, imageUrls) {
+        this.container = container;
+        this.trailContainer = trailContainer;
+        this.imageUrls = imageUrls;
+        
+        // Generate markup
+        this.trailContainer.innerHTML = imageUrls.map(url => `
+          <div class="content__img">
+            <div class="content__img-inner" style="background-image: url('${url}')"></div>
+          </div>
+        `).join('');
+
+        this.images = [...this.trailContainer.querySelectorAll('.content__img')].map(img => new ImageItem(img));
+        this.imagesTotal = this.images.length;
+        this.imgPosition = 0;
+        this.zIndexVal = 1;
+        this.activeImagesCount = 0;
+        this.isIdle = true;
+        this.threshold = 80;
+
+        this.mousePos = { x: 0, y: 0 };
+        this.lastMousePos = { x: 0, y: 0 };
+        this.cacheMousePos = { x: 0, y: 0 };
+        this.lastAngle = 0;
+
+        const handlePointerMove = ev => {
+          this.mousePos = getLocalPointerPos(ev);
+        };
+        
+        this.container.addEventListener('mousemove', handlePointerMove);
+        this.container.addEventListener('touchmove', handlePointerMove);
+
+        const initRender = ev => {
+          this.mousePos = getLocalPointerPos(ev);
+          this.cacheMousePos = { ...this.mousePos };
+          
+          requestAnimationFrame(() => this.render());
+
+          this.container.removeEventListener('mousemove', initRender);
+          this.container.removeEventListener('touchmove', initRender);
+        };
+        
+        this.container.addEventListener('mousemove', initRender);
+        this.container.addEventListener('touchmove', initRender);
+      }
+
+      render() {
+        let distance = getMouseDistance(this.mousePos, this.lastMousePos);
+        if (distance > this.threshold) {
+          this.showNextImage();
+          this.lastMousePos = { ...this.mousePos };
+        }
+        this.cacheMousePos.x = lerp(this.cacheMousePos.x, this.mousePos.x, 0.1);
+        this.cacheMousePos.y = lerp(this.cacheMousePos.y, this.mousePos.y, 0.1);
+        
+        if (this.isIdle && this.zIndexVal !== 1) {
+          this.zIndexVal = 1;
+        }
+        requestAnimationFrame(() => this.render());
+      }
+
+      showNextImage() {
+        let dx = this.mousePos.x - this.cacheMousePos.x;
+        let dy = this.mousePos.y - this.cacheMousePos.y;
+        let angle = Math.atan2(dy, dx) * (180 / Math.PI);
+        
+        if (angle < 0) angle += 360;
+        if (angle > 90 && angle <= 270) angle += 180;
+        
+        const isMovingClockwise = angle >= this.lastAngle;
+        this.lastAngle = angle;
+        
+        let startAngle = isMovingClockwise ? angle - 10 : angle + 10;
+        let distance = Math.sqrt(dx * dx + dy * dy);
+        
+        if (distance !== 0) {
+          dx /= distance;
+          dy /= distance;
+        }
+        dx *= distance / 150;
+        dy *= distance / 150;
+
+        ++this.zIndexVal;
+        this.imgPosition = this.imgPosition < this.imagesTotal - 1 ? this.imgPosition + 1 : 0;
+        const img = this.images[this.imgPosition];
+        
+        gsap.killTweensOf(img.DOM.el);
+
+        gsap
+          .timeline({
+            onStart: () => this.onImageActivated(),
+            onComplete: () => this.onImageDeactivated()
+          })
+          .fromTo(
+            img.DOM.el,
+            {
+              opacity: 0.85,
+              scale: 0.1,
+              zIndex: this.zIndexVal,
+              x: this.cacheMousePos.x - img.rect.width / 2,
+              y: this.cacheMousePos.y - img.rect.height / 2,
+              rotation: startAngle
+            },
+            {
+              duration: 0.9,
+              ease: 'power2.out',
+              scale: 1,
+              x: this.mousePos.x - img.rect.width / 2 + dx * 70,
+              y: this.mousePos.y - img.rect.height / 2 + dy * 70,
+              rotation: this.lastAngle
+            },
+            0
+          )
+          .to(
+            img.DOM.el,
+            {
+              duration: 0.4,
+              ease: 'power2.in',
+              opacity: 0,
+              scale: 0.1
+            },
+            0.55
+          )
+          .to(
+            img.DOM.el,
+            {
+              duration: 1.4,
+              ease: 'power4.out',
+              x: `+=${dx * 120}`,
+              y: `+=${dy * 120}`
+            },
+            0.05
+          );
+      }
+
+      onImageActivated() {
+        this.activeImagesCount++;
+        this.isIdle = false;
+      }
+      
+      onImageDeactivated() {
+        this.activeImagesCount--;
+        if (this.activeImagesCount === 0) {
+          this.isIdle = true;
+        }
+      }
+    }
+
+    // Initialize Global background ImageTrail
+    const globalTrailContainer = document.getElementById('global-trail');
+    const trailImages = [
+      'assets/about.png',
+      'assets/hero.png',
+      'assets/capabilities.png',
+      'assets/method-1.png',
+      'assets/method-2.png',
+      'assets/method-3.png',
+      'assets/method-4.png',
+      'assets/lab-1.png',
+      'assets/lab-2.png',
+      'assets/lab-3.png',
+      'assets/lab-4.png',
+      'assets/lab-5.png',
+      'assets/work-1.png',
+      'assets/work-2.png',
+      'assets/testimonial.png',
+      'assets/cta.png'
+    ];
+
+    if (globalTrailContainer) {
+      new ImageTrail(window, globalTrailContainer, trailImages);
+    }
+
+    // --- CardSwap (Vanilla JS Implementation) ---
+    class CardSwap {
+      constructor(container, options = {}) {
+        this.container = container;
+        this.cards = [...container.querySelectorAll('.card')];
+        this.total = this.cards.length;
+        if (this.total < 2) return;
+
+        this.width = options.width || 360;
+        this.height = options.height || 480;
+        this.distX = options.cardDistance || 24;
+        this.distY = options.verticalDistance || 24;
+        this.delay = options.delay || 5000;
+        this.skewAmount = options.skewAmount || 4;
+        this.easing = options.easing || 'elastic';
+
+        this.config = this.easing === 'elastic'
+          ? {
+              ease: 'elastic.out(0.6,0.9)',
+              durDrop: 2,
+              durMove: 2,
+              durReturn: 2,
+              promoteOverlap: 0.9,
+              returnDelay: 0.05
+            }
+          : {
+              ease: 'power1.inOut',
+              durDrop: 0.8,
+              durMove: 0.8,
+              durReturn: 0.8,
+              promoteOverlap: 0.45,
+              returnDelay: 0.2
+            };
+
+        this.order = Array.from({ length: this.total }, (_, i) => i);
+        this.init();
+      }
+
+      makeSlot(i) {
+        return {
+          x: i * this.distX,
+          y: -i * this.distY,
+          z: -i * this.distX * 1.5,
+          zIndex: this.total - i
+        };
+      }
+
+      placeNow(el, slot) {
+        gsap.set(el, {
+          x: slot.x,
+          y: slot.y,
+          z: slot.z,
+          xPercent: -50,
+          yPercent: -50,
+          skewY: this.skewAmount,
+          transformOrigin: 'center center',
+          zIndex: slot.zIndex,
+          force3D: true
+        });
+      }
+
+      init() {
+        // Position cards initially
+        this.cards.forEach((card, i) => {
+          const slot = this.makeSlot(i);
+          this.placeNow(card, slot);
+        });
+
+        // Swap interval
+        this.interval = setInterval(() => this.swap(), this.delay);
+
+        // Pause on hover
+        this.container.addEventListener('mouseenter', () => {
+          if (this.currentTimeline) this.currentTimeline.pause();
+        });
+        this.container.addEventListener('mouseleave', () => {
+          if (this.currentTimeline) this.currentTimeline.play();
+        });
+      }
+
+      swap() {
+        const [front, ...rest] = this.order;
+        const elFront = this.cards[front];
+        
+        const tl = gsap.timeline();
+        this.currentTimeline = tl;
+
+        // Drop front card down
+        tl.to(elFront, {
+          y: '+=700',
+          duration: this.config.durDrop,
+          ease: this.config.ease
+        });
+
+        // Push rest of the cards forward in the stack
+        tl.addLabel('promote', `-=${this.config.durDrop * this.config.promoteOverlap}`);
+        rest.forEach((idx, i) => {
+          const el = this.cards[idx];
+          const slot = this.makeSlot(i);
+          tl.set(el, { zIndex: slot.zIndex }, 'promote');
+          tl.to(el, {
+            x: slot.x,
+            y: slot.y,
+            z: slot.z,
+            duration: this.config.durMove,
+            ease: this.config.ease
+          }, `promote+=${i * 0.15}`);
+        });
+
+        // Return front card to the back of the stack
+        const backSlot = this.makeSlot(this.total - 1);
+        tl.addLabel('return', `promote+=${this.config.durMove * this.config.returnDelay}`);
+        tl.call(() => {
+          gsap.set(elFront, { zIndex: backSlot.zIndex });
+        }, null, 'return');
+        
+        tl.to(elFront, {
+          x: backSlot.x,
+          y: backSlot.y,
+          z: backSlot.z,
+          duration: this.config.durReturn,
+          ease: this.config.ease
+        }, 'return');
+
+        tl.call(() => {
+          this.order = [...rest, front];
+        });
+      }
+    }
+
+    // Initialize Hero CardSwap
+    const swapContainer = document.getElementById('hero-swap-container');
+    if (swapContainer) {
+      new CardSwap(swapContainer, {
+        width: 480,
+        height: 620,
+        cardDistance: 20,
+        verticalDistance: 20,
+        delay: 5000,
+        skewAmount: 4,
+        easing: 'elastic'
+      });
+    }
+
+    // Progressive image loading with skeleton fade-in
+    document.querySelectorAll("img").forEach((img) => {
+      const container = img.parentElement;
+      if (container && (container.classList.contains("plate-frame") || 
+                        container.classList.contains("small-plate") || 
+                        container.classList.contains("wide-plate") || 
+                        container.classList.contains("cta-image") || 
+                        container.classList.contains("quote-plate") ||
+                        container.classList.contains("method-step") ||
+                        container.classList.contains("work-card") ||
+                        container.classList.contains("lab-card"))) {
+        container.classList.add("img-loading-skeleton");
+      }
+      
+      const handleLoad = () => {
+        img.classList.add("img-loaded");
+        if (container) {
+          container.classList.remove("img-loading-skeleton");
+        }
+      };
+      
+      if (img.complete) {
+        handleLoad();
+      } else {
+        img.addEventListener("load", handleLoad);
+      }
+    });
+
+    // Preloader fade out
+    window.addEventListener("load", () => {
+      const preloader = document.getElementById("preloader");
+      if (preloader) {
+        preloader.classList.add("fade-out");
+      }
+    });
+
+    setTimeout(() => {
+      const preloader = document.getElementById("preloader");
+      if (preloader && !preloader.classList.contains("fade-out")) {
+        preloader.classList.add("fade-out");
+      }
+    }, 2500);
+  </script>
+</body>
+</html>
