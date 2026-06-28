@@ -579,17 +579,37 @@
 
     .small-plate {
       aspect-ratio: 4 / 5;
-      transform: rotate(-1.2deg);
+      --rotate: -1.2deg;
+      --y: 0px;
+      transform: rotate(var(--rotate)) translateY(var(--y));
+      transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1), border-color 300ms ease, box-shadow 300ms ease;
     }
 
     .small-plate:nth-child(2) {
-      transform: rotate(1.8deg);
+      --rotate: 1.8deg;
+      --y: 0px;
       margin-bottom: 36px;
+    }
+
+    .small-plate:hover {
+      transform: scale(1.03) rotate(0deg) translateY(-8px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      z-index: 10;
     }
 
     .wide-plate {
       aspect-ratio: 16 / 9;
       margin-top: 26px;
+      --rotate: 0.8deg;
+      --y: 0px;
+      transform: rotate(var(--rotate)) translateY(var(--y));
+      transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1), border-color 300ms ease, box-shadow 300ms ease;
+    }
+
+    .wide-plate:hover {
+      transform: scale(1.02) rotate(0deg) translateY(-8px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      z-index: 10;
     }
 
     .manifesto {
@@ -730,12 +750,25 @@
       padding: 14px;
       border: 1px solid var(--rule-strong);
       background: rgba(251, 247, 238, 0.7);
-      transition: transform 180ms ease, border-color 180ms ease;
+      --rotate: -0.5deg;
+      --y: 0px;
+      transform: rotate(var(--rotate)) translateY(var(--y));
+      transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1), border-color 300ms ease, box-shadow 300ms ease;
+    }
+
+    .lab-card:nth-child(2n) {
+      --rotate: 0.6deg;
+    }
+
+    .lab-card:nth-child(3n) {
+      --rotate: -0.4deg;
     }
 
     .lab-card:hover {
-      transform: translateY(-3px);
       border-color: var(--ink);
+      transform: scale(1.015) rotate(0deg) translateY(-6px);
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      z-index: 10;
     }
 
     .lab-card img {
@@ -795,6 +828,29 @@
       object-fit: cover;
       border: 1px solid var(--ink);
       background: var(--paper-2);
+      --rotate: -1deg;
+      --y: 0px;
+      transform: rotate(var(--rotate)) translateY(var(--y));
+      transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1), border-color 300ms ease, box-shadow 300ms ease;
+    }
+
+    .method-step:nth-child(2) img {
+      --rotate: 1.2deg;
+    }
+
+    .method-step:nth-child(3) img {
+      --rotate: -0.8deg;
+    }
+
+    .method-step:nth-child(4) img {
+      --rotate: 1deg;
+    }
+
+    .method-step img:hover {
+      border-color: var(--ink);
+      transform: scale(1.03) rotate(0deg) translateY(-8px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.12);
+      z-index: 10;
     }
 
     .method-step h3 {
@@ -917,6 +973,16 @@
       border: 1px solid var(--ink);
       background: var(--paper-2);
       box-shadow: var(--shadow);
+      --rotate: -1.2deg;
+      --y: 0px;
+      transform: rotate(var(--rotate)) translateY(var(--y));
+      transition: transform 300ms cubic-bezier(0.22, 1, 0.36, 1), border-color 300ms ease, box-shadow 300ms ease;
+    }
+
+    .quote-plate:hover {
+      transform: scale(1.02) rotate(0deg) translateY(-6px);
+      box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+      z-index: 10;
     }
 
     .quote-plate img {
